@@ -1,0 +1,30 @@
+{% extends "guide/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block guide %}
+<table class="table text-capitalize">
+    <thead>
+        <tr>
+            <th>sr no</th>
+            <th>name</th>
+            <th>email</th>
+            <th>mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in allResidents %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{res[1]}}</td>
+            <td class="text-lowercase">{{res[2]}}</td>
+            <td>{{res[3]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

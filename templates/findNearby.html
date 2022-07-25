@@ -1,0 +1,212 @@
+{% extends "template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+	<a href="/logout">
+		<button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+	</a>
+</li>
+{% endblock %}
+{% block body %}
+<section class="nearby-places">
+    <div class="container">
+		<div class="row">
+			<div class="col-md-12 ">
+				<div class="single-nearby-places-boxes" style="background:transperent;">
+					<div id="desc-tabs" class="desc-tabs">
+						<div class="find-header text-center">
+							<h2 class="page-header">
+								Find your nearby?
+							</h2>
+                            <input list="placeList" class="" name="myCountry" id="myInput"
+								placeholder="Search here" style="width: 300px; height:50px; border:0;border-radius:5px;padding:10px;">
+							<datalist id="placeList">
+								{% for place in placeTypes %}
+								<option value="{{place}}">
+								{% endfor %}
+							</datalist>
+						</div>
+						<div class="places-content">
+							<div class="row iso-box-wrapper">
+								<div class="iso-box food col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/hotel.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Food</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/food">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box health col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/hospital.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Health</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/health">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box learning_and_education col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Learning and Education.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Learning & Education</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/learning_and_education">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box sports col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/sports.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Sports</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/sports">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box temples col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/temple.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Temples</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/temples">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box mobile_and_electronics col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Mobile and Electronics.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Mobile & Electronic</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/mobile_and_electronics">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box beaty_and_wellness col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Beaty & Wellness.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Beaty & Wellness</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/beaty_and_wellness">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box entertainment col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Entertainment.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Entertainment</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/entertainment">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box gardens col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/garden.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>gardens</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/gardens">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box grocery col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/grocery.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>grocery</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/grocery">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box gym health col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/gym.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>gym</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/gym">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box stationary learning_and_education col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/stationary.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>stationary</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/stationary">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="about-btn">
+								<button onclick="displayMore()" class="about-view user-articles-btn">
+									View More
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

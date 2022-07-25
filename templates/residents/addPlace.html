@@ -1,0 +1,88 @@
+{% block locationLinks %}
+
+
+{% endblock %}
+{% extends "residents/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block resident %}
+
+<form action="/addPlace" method="post" enctype="multipart/form-data">
+    <h2 class="page-header">Add missing place</h2>
+    <div id="firstpage" class="row">
+        <div class="col-md-12 col-lg-12">
+            <div>
+                <input onclick="getTown()" type="text" class="form-control" name="pname" placeholder="Place Name" required/>
+            </div>
+            <div>
+                <select class="form-control text-capitalize" name="ptype" id="PlacesTypes" required>
+                    <option selected disabled>Select type of place</option>
+                    {% for types in placeTypes%}
+                    <option value="{{types}}">{{types}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <input type="text" name="mobileno" minlength="10" maxlength="10" class="form-control"
+                    placeholder="Contact Number" />
+            </div>
+            <div>
+                <textarea class="form-control" name="description" id="" cols="30" rows="5"
+                    placeholder="About Place"></textarea>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-12">
+            <div class="about-btn">
+                <button type="button" class="about-view add-events-btn" onclick="togglePage()">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="secondpage" class="row" style="display:none;">
+        <div class="col-sm-6">
+            <div class="col-md-12">
+                <strong style="float: left;">
+                    <label style="float: left;">Select place location : </label>
+                </strong>
+                <br>
+                <small class="text-warning" style="float: left;">
+                    Warning: Please make sure you are at the exact location.
+                </small>
+                <br>
+                <input type="hidden" id="lat" name="latitude" />
+                <input type="hidden" id="lng" name="longitude" />
+                <div id="locationPicker" style="border:0; border-radius:10px;width:100%; height:300px">
+                    <!-- location picker body  -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="margin-top:30px;">
+            <label class="form-control-label" style="float: left;">Upload Photos of your place</label>
+            <input type="file" onclick="plocation.value=getCoordinates()" name="file" class="form-control" />
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-md-6">
+                <div class="about-btn">
+                    <button type="button" class="about-view add-events-btn" onclick="togglePage()">
+                        <i class="fa fa-arrow-circle-left"></i>&nbsp; Back
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6" style="display: flex; justify-content:right;">
+                <div class="about-btn">
+                    <button type="submit" class="about-view add-events-btn">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

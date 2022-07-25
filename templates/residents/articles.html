@@ -1,0 +1,28 @@
+{% extends "residents/template.html" %}
+
+{% block resident %}
+<table class="table text-capitalize">
+    <thead>
+        <tr>
+            <th>sr no</th>
+            <th>writer name</th>
+            <th>article_content</th>
+            <th>photo</th>
+            <th>published date</th>
+            <th>rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in allArticles %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{res[2]}}</td>
+            <td>{{res[3]}}</td>
+            <td>{{res[4]}}</td>
+            <td>{{res[5]}}</td>
+            <td>{{res[6]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

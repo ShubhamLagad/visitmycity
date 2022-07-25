@@ -1,0 +1,40 @@
+{% extends "residents/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+  <a href="/logout">
+    <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+  </a>
+</li>
+{% endblock %}
+{% block resident %}
+<div class="col-sm-12">
+  <h2 class="page-header">Add an Article</h2>
+  <form action="/addArticle" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-6">
+        <input type="hidden" name="alocation" id="coordinates">
+        <div>
+          <input type="text" class="form-control" placeholder="Your Name" name="writername"
+            onclick="alocation.value=getCoordinates()" />
+        </div>
+        <div>
+          <textarea class="form-control" name="article_content" id="" cols="30" rows="8"
+            placeholder="Write your article here..."></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-control-label" for="">Upload Images</label>
+        <input type="file" name="file" class="form-control" />
+      </div>
+      <div class="col-md-12">
+        <div class="about-btn">
+          <button type="submit" class="about-view add-articles-btn">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

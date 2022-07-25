@@ -1,0 +1,35 @@
+{% extends "residents/template.html" %}
+
+{% block resident %}
+<table class="table text-capitalize">
+    <thead>
+        <tr>
+            <th>sr no</th>
+            <th>event name</th>
+            <th>organizer</th>
+            <th>venue</th>
+            <th>date</th>
+            <th>time</th>
+            <th>poster</th>
+            <th>location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in allEvents %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{res[2]}}</td>
+            <td>{{res[7]}}</td>
+            <td>{{res[3]}}</td>
+            <td>{{res[4]}}</td>
+            <td>{{res[5]}}</td>
+            {% set imgname ="images/events/"+res[6] %}
+            <td><img src="{{ url_for('static',filename=imgname) }}" alt="" srcset="" width="100px" height="100px"></td>
+
+            {% set url ="http://maps.google.de/maps?q=loc:"+res[8] %}
+            <td><button class="btn btn-info text-uppercase"><a style="font-weight: 600;color:#fff;"   href="{{url}}" target="_blank">get direction <i class="fa fa-location-arrow"></i></a> </button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "guide/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block guide %}
+<table class="table text-capitalize">
+    <thead>
+        <tr>
+            <th style="width:max-content">sr no</th>
+            <th>username</th>
+            <th>Place name</th>
+            <th>type</th>
+            <th>description</th>
+            <th>mobileno</th>
+            <th>photo</th>
+            <th>location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in allPlaces %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td class="text-lowercase">{{res[1]}}</td>
+            <td>{{res[2]}}</td>
+            <td>{{res[3]}}</td>
+            <td>{{res[4]}}</td>
+            <td>{{res[5]}}</td>
+            {% set imgname ="images/places/"+res[6] %}
+            <td><img src="{{ url_for('static',filename=imgname) }}" alt="" srcset="" width="100px" height="100px"></td>
+            {% set url ="http://maps.google.de/maps?q=loc:"+res[7] %}
+            <td><button class="btn btn-info text-uppercase"><a style="font-weight: 600;color:#fff;" href="{{url}}"
+                        target="_blank">get direction <i class="fa fa-location-arrow"></i></a> </button></td>
+            <!-- http://maps.google.de/maps?q=loc:18.4656449,73.8335291 -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

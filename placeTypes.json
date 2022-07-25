@@ -1,0 +1,22 @@
+{
+    "placeTypes":[
+        "food",
+        "sports",
+        "entertainment",
+        "temples",
+        "mobile_and_electronics",
+        "beaty_and_wellness",
+        "learning_and_education",
+        "gardens",
+        "grocery",
+        "health",
+        "stationary",
+        "road",
+        "gym",
+        "daily_needs",
+        "Cafe",
+        "hill station",
+        "college",
+        "waterpark"
+    ]
+}

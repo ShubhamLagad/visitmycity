@@ -1,0 +1,138 @@
+{% extends "residents/template.html" %}
+
+{% block resident %}
+<div class="row">
+    <div class="col-sm-6 resident-profile">
+        <div class="card">
+            <div>
+                <span class="title">Your Profile</span>
+            </div>
+            <hr>
+            <script>
+                function showPass() {
+                    var x = document.getElementById('password')
+                    x.type = 'text'
+                }
+
+                function changeReadonly(id) {
+                    document.getElementById(id).readOnly = false
+                    document.getElementById(id).focus();
+                }
+
+                function changePincode(id) {
+                    document.getElementById(id).value = document.getElementById('currentPin').value;
+                }
+            </script>
+            <form action="/updateResident" method="post">
+                {% for res in residentDetails %}
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <label for="basic-url">Your Name</label>
+                            <div class="input-group">
+                                <input pattern="[A-Za-z ]*" type="text" class="form-control" value="{{res[1]}}"
+                                    id="rname" name="rname" readonly aria-describedby="basic-addon2">
+                                <span style="height:fit-content ;" onclick="changeReadonly('rname')"
+                                    class="input-group-addon" id="basic-addon2">
+                                    <i class="fa fa-edit"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="basic-url">Your Email</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" name="remail" value="{{res[2]}}" id="remail" readonly
+                                    aria-describedby="basic-addon2">
+                                <span onclick="changeReadonly('remail')" class="input-group-addon" id="basic-addon2">
+                                    <i class="fa fa-edit"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="basic-url">Your Mobile No.</label>
+                            <div class="input-group">
+                                <input pattern="[0-9]*" type="text" class="form-control" maxlength="10" minlength="10"
+                                    value="{{res[3]}}" id="rmobile" name="rmobile" readonly aria-describedby="basic-addon2">
+                                <span onclick="changeReadonly('rmobile')" class="input-group-addon" id="basic-addon2">
+                                    <i class="fa fa-edit"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="basic-url">Your Password</label>
+                            <div class="input-group">
+                                <span onclick="showPass()" class="input-group-addon" id="basic-addon2">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+
+                                <input type="password" class="form-control" value="{{res[4]}}" readonly
+                                    aria-describedby="basic-addon2" name="rpassword" id="password">
+                                <span onclick="changeReadonly('password')" class="input-group-addon" id="basic-addon2">
+                                    <i class="fa fa-edit"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <label for="basic-url">Your Location :</label>
+                            
+                            <br>
+                            {% set latlon =res[5].split(',') %}
+                            <input type="hidden" id="residentlat" name="latitude" value="{{latlon[0]}}" />
+                            <input type="hidden" id="residentlng" name="longitude" value="{{latlon[1]}}" />
+                            <div id="residentlocationPicker"
+                                style="border:0; border-radius:10px;width:100%; height:300px">
+                                <!-- location picker body  -->
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <span style="display: flex; justify-content:center;"><button type="submit"
+                                    class="btn btn-primary">Update
+                                        Profile </button></span>
+                        </td>
+                    </tr>
+                </table>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-6 resident-details">
+        <div class="row card">
+            <div class="col-sm-6 place">
+                <h1>0{{count['place']}}<sub><small>places</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn btn-primary"><a href="/addPlace"><i class="fa fa-plus-circle"></i> Add More
+                            Places</a></button></div>
+            </div>
+            <div class="col-sm-6 event">
+                <h1>0{{count['event']}}<sub><small>events</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn"><a href="/addEvent"><i class="fa fa-plus-circle"></i> Add More
+                            Events</a></button></div>
+            </div>
+            <div class="col-sm-6 article">
+                <h1>0{{count['article']}}<sub><small>articles</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn"><a href="/addArticle"><i class="fa fa-plus-circle"></i> Add More
+                            Articles</a></button></div>
+            </div>
+            <div class="col-sm-6 offers">
+                <h1>0{{count['offers']}}<sub><small>offers/advertisement</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn"><a href="/addAdvertOffer"><i class="fa fa-plus-circle"></i> Add More Advertisement/Offers</a></button></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

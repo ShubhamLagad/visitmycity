@@ -1,0 +1,74 @@
+{% extends "template.html" %}
+
+{% block body %}
+<section class="places" id="home">
+    <div class="container">
+        <div class="places-header text-center">
+            <h2 class="page-header">
+                {% if places!=[] %}
+                Your nearby {{places[0][3]}}
+                <div class="row col-sm-12" style="display:flex; justify-content:center; margin-top:30px;">
+                    <input list="placeList" class="form-control" name="myCountry" id="myInput"
+                        placeholder="Search here" style="width: 300px; height:50px;">
+                    <datalist id="placeList">
+                        {% for name in places %}
+                        <option value="{{name[2]}}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+                {% else %}
+                No result found
+                {% endif %}
+            </h2>
+        </div>
+       
+        <div class="places-content">
+            <div class="row iso-box-wrapper">
+                {% for res in places %}
+                <div class="iso-box {{res[2]}} col-md-4 col-sm-6">
+                    <div class="single-places-item text-danger">
+                        {% set imgName = "images/places/"+res[6] %}
+                        <img src="{{url_for('static',filename=imgName)}}" alt="places-place">
+                        <div class="single-places-item-txt">
+                            <h3 class="text-center"> {{res[2]}} </h3>
+                            <div class="places-para">
+                                <p>
+                                   {{res[4]}}
+                                </p>
+                                <p>
+                                    <i class="fa fa-phone"></i> {{res[5]}}
+                                </p>
+                            </div>
+                            <div class="places-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>2544 review</span>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="about-btn col-md-6">
+                                    <button class="about-view places-btn">
+                                        <i class="fa fa-eye"> </i>&nbsp;View Details
+                                    </button>
+                                </div>
+                                <div class="about-btn col-md-6">
+                                    {% set coordinates = res[7].split(',') %}
+                                    <button class="about-view places-btn">
+                                        <a href="http://maps.google.de/maps?q=loc:{{coordinates[0]}},{{coordinates[1]}}" target="_blank" style="font-weight: 600; color:#fff;">get direction &nbsp; <i class="fa fa-location-arrow"> </i></a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

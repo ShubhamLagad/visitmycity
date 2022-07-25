@@ -1,0 +1,132 @@
+{% extends "guide/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block guide %}
+<div class="row">
+    <div class="col-sm-6 resident-profile">
+        <div class="card">
+            <div>
+                <span class="title">Your Profile</span>
+            </div>
+            <hr>
+            <script>
+                function showPass() {
+                    var x = document.getElementById('password')
+                    x.type = 'text'
+                }
+
+                function changeReadonly(id) {
+                    document.getElementById(id).readOnly = false
+                    document.getElementById(id).focus();
+                }
+            </script>
+            <form action="#" method="post">
+                {% for res in guideDetails%}
+                <div class="">
+                    <div class="col-sm-4">
+                        {% set imgName = "images/guide/"+res[8] %}
+                        <img src="{{url_for('static',filename=imgName)}}" alt="..." width="150px"
+                            height="100px" style="border-radius: 5px;border:4px solid white;box-shadow:0 0 5px black;">
+                    </div>
+                    <div class="col-sm-8" style="float: left;">
+                        <label for="basic-url">Your Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{res[4]}}" id="rname" name="rname"
+                                readonly aria-describedby="basic-addon2">
+                            <span style="height:fit-content ;" onclick="changeReadonly('rname')"
+                                class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                        <label for="basic-url">Your Email</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{res[1]}}" id="remail" readonly
+                                aria-describedby="basic-addon2">
+                            <span onclick="changeReadonly('remail')" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                        <label for="basic-url">Your Mobile No.</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{res[3]}}" id="mobile" readonly
+                                aria-describedby="basic-addon2">
+                            <span onclick="changeReadonly('mobile')" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <label for="basic-url">Change Photo :</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" value="shubham lagad" id="pincode"
+                                aria-describedby="basic-addon2">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <label for="basic-url">Your Password</label>
+                        <div class="input-group">
+                            <span onclick="showPass()" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                            <input type="password" class="form-control" value="{{res[2]}}" readonly
+                                aria-describedby="basic-addon2" value="123456" id="password">
+                            <span onclick="changeReadonly('password')" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <label for="basic-url">Your Town :</label>
+                        <p><strong>{{res[5]}}</strong></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="basic-url">Your Pincode :</label>
+                        <p>
+                            <strong>{{res[6]}}</strong>
+                        </p>
+                    </div>
+                    <div class="col-sm-12">
+                        <hr>
+                        <span style="display: flex; justify-content:center;"><button type="submit"
+                                class="btn btn-primary"><a href="" style="color: #fff;">Update
+                                    Profile </a></button></span>
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-6 resident-details">
+        <div class="row card">
+            <div class="col-sm-6 place">
+                <h1>256<sub><small>places</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn btn-primary"><a href="/addPlace"><i class="fa fa-plus-circle"></i> Add More
+                            Places</a></button></div>
+            </div>
+            <div class="col-sm-6 event">
+                <h1>256<sub><small>events</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn"><a href="/addEvent"><i class="fa fa-plus-circle"></i> Add More
+                            Events</a></button></div>
+            </div>
+            <div class="col-sm-6 article">
+                <h1>256<sub><small>articles</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn"><a href="/addArticle"><i class="fa fa-plus-circle"></i> Add More
+                            Articles</a></button></div>
+            </div>
+            <div class="col-sm-6 offers">
+                <h1>256<sub><small>places</small></sub></h1>
+                <h2>You added</h2>
+                <div><button class="btn"><a href=""><i class="fa fa-plus-circle"></i> Add More Places</a></button></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

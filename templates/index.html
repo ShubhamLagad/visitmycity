@@ -1,0 +1,471 @@
+{% extends "template.html" %}
+
+{% block navButton %}
+<li class="smooth-menu">
+	<a href="#nearby"> <i class="fa fa-search"> </i>
+		Search Nearby
+	</a>
+</li>
+<li><a class="login-btn">
+		<button id="login-Btn" class="login-view">
+			Login/Sign up
+		</button>
+	</a></li>
+{% endblock %}
+
+{% block body%}
+
+{% if registerSuccessStatus %}
+<script>
+	alert("Registration successfull!")
+	window.location.href = "/";
+</script>
+{% endif %}
+
+{% if accountExistsStatus %}
+<script>
+	alert("Account already exists!")
+</script>
+{% endif %}
+
+{% if guideAccountExistsStatus %}
+<script>
+	
+	alert("The guide already exists in this town!")
+</script>
+{% endif %}
+
+{% if loginStatus %}
+<script>
+	alert("Login Failed!\nUsername and password are incorrect?")
+</script>
+{% endif %}
+
+
+<!--about-us start -->
+<section id="home" class="about-us">
+	<div class="container">
+		<div class="about-us-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="single-about-us">
+						<div class="about-us-txt">
+							<h2>
+								Visit Our <span>Pune</span>
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--about-us end -->
+
+<!--nearby-places-box start-->
+<section class="nearby-places-box" id="nearby">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 ">
+				<div class="single-nearby-places-boxes" style="background: rgb(234, 238, 239);">
+					<div id="desc-tabs" class="desc-tabs">
+						<div class="text-center">
+							<h2 class="page-header" style="color:rgb(36, 42, 74);">
+								Find your nearby?
+							</h2>
+						</div>
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation">
+								<a href="/places/food">
+									<i class="fa fa-hotel"></i>
+									Food
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="/places/health">
+									<i class="fa fa-hospital-o"></i>
+									Health
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="/places/daily_needs">
+									<i class="fa fa-life-ring"></i>
+									Daily Needs
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="/places/learning_and_education">
+									<i class="fa fa-graduation-cap"></i>
+									Learning & Education
+								</a>
+							</li>
+							<li>
+								<a href="/findNearby">
+									<i class="fa fa-plus"></i>
+									More
+								</a>
+							</li>
+						</ul>
+						<div class="row col-sm-12" style="display:flex; justify-content:center; margin-top:30px;">
+							<input list="placeList" class="form-control" name="myCountry" id="myInput"
+								placeholder="Search here" style="width: 300px; height:50px;">
+							<datalist id="placeList">
+								<option value="Food">
+								<option value="Entertainment">
+								<option value="Sports">
+								<option value="Health">
+								<option value="Learning & Education">
+							</datalist>
+						</div>
+						<div class="places-content">
+							<div class="row iso-box-wrapper" id="nearbycontent">
+								<div class="iso-box london col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/sports.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Sports</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/sports">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box london col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/temple.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Temples</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/temples">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box london col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Mobile and Electronics.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Mobile & Electronic</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/mobile_and_electronics">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box london paris ny col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/hotel.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Food</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/food">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box london ny hn col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Beaty & Wellness.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Beaty & Wellness</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/beaty_and_wellness">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="iso-box london hn col-md-4 col-sm-6">
+									<div class="single-package-item">
+										<img src="{{url_for('static',filename='images/categories/Entertainment.jpg')}}"
+											alt="package-place">
+										<div class="single-package-item-txt text-center">
+											<h3>Entertainment</h3>
+											<div class="about-btn">
+												<button class="about-view user-articles-btn">
+													<a href="/places/entertainment">Find Now</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="about-btn">
+								<button class="about-view user-articles-btn">
+									<a href="/findNearby">View More </a>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--nearby-places-box end-->
+
+<!--service start-->
+<section id="service" class="service">
+	<div class="container">
+		<div class="service-counter text-center">
+			<div class="col-md-3 col-sm-3">
+				<div class="single-service-box">
+					<div class="service-content">
+						<div class="statistics-img">
+							<img src="{{url_for('static',filename='images/categories/business.png')}}"
+								alt="service-icon" />
+						</div>
+						<h2>
+							<a href="#">
+								Expand Your Business!
+							</a>
+						</h2>
+						<p>You can add your business details here. People will see it and visit.</p>
+						<a href="/addPlace" class="add-btn">
+							<button class="add add-things-btn">
+								<i class="fa fa-plus"> </i> Add Buisness Details
+							</button>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3">
+				<div class="single-service-box">
+					<div class="service-content">
+						<div class="statistics-img">
+							<img src="{{url_for('static',filename='images/categories/navigate.jpg')}}"
+								alt="service-icon" />
+						</div>
+						<h2>
+							<a href="#">
+								Add your nearby missing places
+							</a>
+						</h2>
+						<p>You can able to add your nearby places like hotels,grocerry-store,sport-grounds,etc.</p>
+						<a href="/addPlace" class="add-btn">
+							<button class="add add-things-btn">
+								<i class="fa fa-plus"> </i> Add Missing Place
+							</button>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3">
+				<div class="single-service-box">
+					<div class="service-content">
+						<div class="statistics-img">
+							<img src="{{url_for('static',filename='images/categories/events.jpg')}}"
+								alt="service-icon" />
+						</div>
+						<h2>
+							<a href="#">
+								Let! Add an event.
+							</a>
+						</h2>
+						<p> Add your events and invite your nearby people.</p>
+						<a href="/addEvent" class="add-btn">
+							<button class="add add-things-btn">
+								<i class="fa fa-plus"> </i> Add Event
+							</button>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-3">
+				<div class="single-service-box">
+					<div class="service-content">
+						<div class="statistics-img">
+							<img src="{{url_for('static',filename='images/categories/articles.png')}}"
+								alt="service-icon" />
+						</div>
+						<h2>
+							<a href="#">
+								Let! Articles about your city.
+							</a>
+						</h2>
+						<p> You can able to add information of your city through an articles.</p>
+						<a href="/addArticle" class="add-btn">
+							<button class="add add-things-btn">
+								<i class="fa fa-plus"> </i> Add Articles
+							</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--service end-->
+
+
+<!-- ---------------Login Modal start----------------------->
+<div id="login-modal" class="modal">
+	<div class="modal-content">
+		<span id="login-close" class="close login-close">&times;</span>
+		<h2>Login</h2>
+		<hr>
+		<form action="/residents/dashboard" method="post">
+			<input type="email" class="form-control" placeholder="Username" name="username">
+			<input type="password" class="form-control" placeholder="Password" name="loginpassword">
+			<div class="about-btn">
+				<button type="submit" class="about-view user-articles-btn">
+					Login
+				</button>
+			</div>
+			<div class="register-text">
+				Don't have an account? <a class="login-close text-success" id="register-Btn"
+					style="cursor:pointer;"><strong> Sign up</strong></a>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- ---------------Login Modal end------------------------>
+
+
+<!-- ---------------Register Modal start------------------->
+<div id="register-modal" class="modal">
+	<div class="modal-content">
+		<span id="register-close" class="close register-close">&times;</span>
+		<h3>Create an Account?</h3>
+		<hr>
+		<div class="visitor" id="visitor">
+			<form action="/addResident" method="post">
+				<input type="text" pattern="*[A-Za-z ]" class="form-control" placeholder="Name" name="name" required>
+				<input type="email" class="form-control" placeholder="Email" name="regEmail" required>
+				<input type="text" pattern="*[0-9]" class="form-control" placeholder="Mobile No" name="mobile"
+					minlength="10" maxlength="10" required>
+				<input type="password" class="form-control" placeholder="Password" minlength="4" maxlength="8"
+					name="regPassword" id="regPassword" onclick="passWarn('passalert')" required>
+				<span class="text-danger" id="passalert"></span>
+				<input type="password" class="form-control" placeholder="Confirm Password" id="regCPassword"
+					name="regCPassword" onkeyup="checkPassword('regPassword','regCPassword','passalert','regButton')" required>
+				<div>
+					<strong style="float: left;">
+						<label style="float: left;">Select your location : </label>
+					</strong>
+					<br>
+					<br>
+					<small class="text-warning" style="float: left;">
+						Warning: Please make sure you are at the exact location.
+					</small>
+					<br>
+					<input type="hidden" id="lat" name="latitude" />
+					<input type="hidden" id="lng" name="longitude" />
+					<div id="locationPicker" style="border:0; border-radius:10px;width:100%; height:200px">
+						<!-- location picker body  -->
+					</div>
+				</div>
+				<div class="about-btn">
+					<button id="regButton" type="submit" class="about-view user-articles-btn">
+						register
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-----------------register Modal end------------------------>
+
+<!-- ---------------Guide Register Modal start------------------->
+<div id="guide-register-modal" class="modal">
+	<div class="modal-content">
+		<span id="guide-register-close" onclick="guide_register_close()" class="close">&times;</span>
+		<h3>Create an Account?</h3>
+		<hr>
+		<div class="guide">
+			<form action="/addGuide" method="post" enctype="multipart/form-data">
+				<input type="text" pattern="*[A-Za-z ]" class="form-control" placeholder="Name" name="gname"
+					 required>
+				<input type="email" class="form-control" placeholder="Email" name="gEmail" required>
+				<input type="text" pattern="*[0-9]" class="form-control" placeholder="Mobile No" name="gmobile"
+					minlength="10" maxlength="10" required>
+				<small class="text-secondary" id="passwarn"></small>
+				<input type="password" class="form-control" placeholder="Password" minlength="4" maxlength="8"
+					name="regPassword" id="gregPassword" onclick="passWarn('gpassalert')" required>
+				<span class="text-danger" id="gpassalert"></span>
+				<input type="password" class="form-control" placeholder="Confirm Password" id="gregCPassword"
+					name="gCPassword" onkeyup="checkPassword('gregPassword','gregCPassword','gpassalert','gregButton')" required>
+				<label for="forfile">Your Photo : </label>
+				<input type="file" name="photo" required>
+				<div>
+					<strong style="float: left;">
+						<label style="float: left;">Select your location : </label>
+					</strong>
+					<br>
+					<small class="text-warning" style="float: left;">
+						Warning: Please make sure you are at the exact location.
+					</small>
+					<input type="hidden" id="lat2" name="latitude" />
+					<input type="hidden" id="lng2" name="longitude" />
+					<div id="locationPicker2" style="border:0; border-radius:10px;width:100%; height:200px">
+						<!-- location picker body  -->
+					</div>
+				</div>
+				<div class="about-btn">
+					<button id="gregButton" type="submit" class="about-view user-articles-btn">
+						register
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-----------------Guide register Modal end------------------------>
+
+<!-- ---------------Guide Login Modal start----------------------->
+<div id="guide-login-modal" class="modal">
+	<div class="modal-content">
+		<span id="guide-login-close" class="close login-close">&times;</span>
+		<h2>Login</h2>
+		<hr>
+		<form action="/guide/dashboard" method="post">
+			<input type="email" class="form-control" placeholder="Username" name="guideUsername">
+			<input type="password" class="form-control" placeholder="Password" name="guidePassword">
+			<div class="about-btn">
+				<button type="submit" class="about-view user-articles-btn">
+					Login
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- ---------------Guide Login Modal end------------------------>
+
+
+{% if login %}
+<script>
+	var login_modal = document.getElementById("login-modal");
+	login_modal.style.display = "flex";
+</script>
+{% endif %}
+
+{% if registerSuccessStatus %}
+<script>
+	var login_modal = document.getElementById("login-modal");
+	login_modal.style.display = "flex";
+</script>
+{% endif %}
+
+
+{% if loginStatus %}
+<script>
+	var login_modal = document.getElementById("login-modal");
+	login_modal.style.display = "flex";
+</script>
+{% endif %}
+
+{% endblock %}

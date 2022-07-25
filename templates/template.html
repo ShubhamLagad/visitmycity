@@ -1,0 +1,738 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <!-- META DATA -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visit My City</title>
+    <link rel="shortcut icon" type="image/icon" href="{{url_for('static',filename='logo/favicon.png')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}" />
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/hover-min.css')}}"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/datepicker.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootsnav.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/validation.css')}}" />
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+
+    {% block locationLinks %}
+    {% endblock %}
+</head>
+
+<body>
+    <!-- main-menu Start -->
+    <header class="top-area">
+        <div class="header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <a href="/residents/dashboard">
+                                Visit My <span>City</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="main-menu">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                   
+                                    {% block navUser %}{% endblock %}
+                                    <li class="smooth-menu"><a href="#home">Home</a></li>
+                                    <li class="smooth-menu"><a href="#contact">Contact </a></li>
+                                    <li class="smooth-menu"><a href="#offers">Offers</a></li>
+                                    <li class="smooth-menu"><a href="#">Help</a></li>
+                                    {% block navButton %}{% endblock %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-border"></div>
+            </div>
+        </div>
+    </header>
+    <!-- main-menu End -->
+    {% block body%}
+
+
+    {% endblock %}
+
+    <!-- offers Start -->
+    <section class="user-offers" id="offers">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="page-header" style="color:rgb(75, 75, 118) ;">
+                    Your Nearby Offers
+                </h2>
+            </div>
+            <div class="owl-carousel owl-theme" id="users-offers-carousel">
+                <div class="home-testm-single">
+                    <div class="home-testm-txt">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="home-testm-img">
+                                    <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}"
+                                        alt="img" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h3>
+                                    20% Off
+                                </h3>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>dsfvfdfdbfdbfdbfdfedfrgvfdcssderf
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>dfbdfsbfdbfdb
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>dfbdfbfdbdfb
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>dfbdfbfdbdfb
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>dfbdfbfdbdfb
+                                </h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="about-btn">
+                                    <button class="about-view user-articles-btn">
+                                        Get Direction &nbsp;<i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-testm-single">
+                    <div class="home-testm-txt">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="home-testm-img">
+                                    <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}"
+                                        alt="img" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h3>
+                                    20% Off
+                                </h3>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>jkdmdhcnfgfhfikdldhfnfjrhrydjdhdufklkm
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="about-btn">
+                                    <button class="about-view user-articles-btn">
+                                        Get Direction &nbsp;<i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-testm-single">
+                    <div class="home-testm-txt">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="home-testm-img">
+                                    <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}"
+                                        alt="img" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h3>
+                                    20% Off
+                                </h3>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="about-btn">
+                                    <button class="about-view user-articles-btn">
+                                        Get Direction &nbsp;<i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-testm-single">
+                    <div class="home-testm-txt">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="home-testm-img">
+                                    <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}"
+                                        alt="img" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h3>
+                                    20% Off
+                                </h3>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="about-btn">
+                                    <button class="about-view user-articles-btn">
+                                        Get Direction &nbsp;<i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-testm-single">
+                    <div class="home-testm-txt">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="home-testm-img">
+                                    <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}"
+                                        alt="img" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h3>
+                                    20% Off
+                                </h3>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                                <h4>
+                                    <i class="fa fa-angle-right"></i>
+                                </h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="about-btn">
+                                    <button class="about-view user-articles-btn">
+                                        Get Direction &nbsp;<i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- offers End -->
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="gallery-details">
+                <div class=" text-center">
+                    <h2 class="page-header" style="color:rgb(37, 51, 99) ;">
+                        Your Nearby Events
+                    </h2>
+                </div>
+                <div class="gallery-box">
+                    <div class="gallery-content">
+                        <div class="filtr-container">
+                            <div class="row">
+                                {% for event in events %}
+                                <div class="col-md-4">
+                                    <div class="filtr-item">
+                                        <img src="{{ url_for('static',filename='images/events/'+event[6]) }}"
+                                            alt="portfolio image" />
+                                        <div class="item-title">
+                                            <p>{{event[2]}}</p>
+                                            <p><span>{{event[5]}}</span><span>{{event[4]}}</span></p>
+                                            <p><small>Venue : {{event[3]}}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--user-articles start-->
+    <section class="user-articles">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="user-articles-content text-center">
+                        <h2 class="page-header" style="color:rgb(37, 51, 99) ;">We are in Pune Now!</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="campaign-timer"><img src="../static/images/places/Shaniwar-wada.jpg" alt=""
+                                        style="border-radius:5px;"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="campaign-timer">
+                                    <p class="camp">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+                                        tempora maiores necessitatibus eius porro ut consequuntur, assumenda hic
+                                        voluptates. Reiciendis voluptatem, corrupti ipsum illum vitae nam nobis
+                                        explicabo provident culpa nihil animi placeat, aut necessitatibus, ab adipisci
+                                        similique nesciunt alias. Obcaecati vitae ducimus ab eum, labore in porro fugit
+                                        a, voluptatibus non omnis odit ipsam natus. Ea dicta rem nobis illo voluptas
+                                        iusto aut, vero alias, aspernatur ipsam amet accusamus officiis reiciendis
+                                        dignissimos veniam dolor enim deleniti odit quos vitae eaque tempore, laudantium
+                                        magnam? Aut amet vel itaque aperiam deleniti! Iusto veritatis, nihil expedita
+                                        non laudantium fuga natus quaerat ad?</p>
+                                    <div class="about-btn">
+                                        <button class="about-view user-articles-btn">
+                                            Read more &nbsp;<i class="fa fa-arrow-circle-o-right"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--user-articles end-->
+
+
+    <!-- feedback Start -->
+    <section class="user-feedback">
+        <div class="container">
+            <div class="gallary-header text-center">
+                <h2>
+                    What Says Our Customers
+                </h2>
+                <p>
+                    Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla.
+                </p>
+            </div>
+            <div class="owl-carousel owl-theme" id="user-feedback-carousel">
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial2.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial2.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial2.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center">
+                        <div class="home1-testm-img">
+                            <img src="{{url_for('static',filename='images/client/testimonial1.jpg')}}" alt="img" />
+                        </div>
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
+                                aliqua. Ut enim ad minim veniam.
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    kevin watson
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feedback End -->
+
+    <!--local guide start-->
+    <section class="service">
+        <div class="container">
+            <div class="service-counter text-center">
+                <div class="col-md-8">
+                    <div class="single-service-box">
+                        <div class="row" style="padding: 20px;">
+                            <div class="col-sm-12">
+                                <h1><strong>Local Guide Information</strong></h1>
+                                <hr style="height:1px;background:rgb(192, 190, 190);">
+                            </div>
+                            <div class="col-sm-12">
+                                {% if localGuide is none %}
+                                <strong>There is no guide available for this town</strong>
+                                <hr>
+                                <strong>To become a local guide : </strong>
+                                <div>
+                                    <button onclick="guide_reg_btn()" type="button" id="guide-register-Btn"
+                                        class="btn btn-info" style="float:center;">Click here</button>
+                                </div>
+                                {% else %}
+                                <div class="col-sm-4">
+                                    <img src="{{url_for('static',filename='images/categories/events.jpg')}}"
+                                        alt="service-icon"
+                                        style="border-radius: 5%; width:200px;height:150px; border:5px solid white;" />
+                                    <strong>Below actions only for Guide</strong>
+                                    <div class="guide-actions text-center">
+                                        <hr style="height:1px;background:rgb(192, 190, 190); ">
+                                        <button id="guide-login-btn" class="btn btn-primary" style="float:center ;">Sign
+                                            In</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="guide-info">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon3">Name</span>
+                                            <input type="text" class="form-control" id="basic-url"
+                                                aria-describedby="basic-addon3" value="{{localGuide[4]}}" readonly>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon3">Email</span>
+                                            <input type="text" class="form-control" id="basic-url"
+                                                aria-describedby="basic-addon3" value="{{localGuide[1]}}" readonly>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon3">Contact No</span>
+                                            <input type="text" class="form-control" id="basic-url"
+                                                aria-describedby="basic-addon3" value="{{localGuide[3]}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-service-box">
+                        <div class="service-content">
+                            <div class="custom-input-group ">
+                                <h4>
+                                    Say something to your local guide!
+                                </h4>
+                                <hr style="height:1px;background:rgb(192, 190, 190);">
+                                <form action="/feedback" method="post">
+                                    <input type="text" class="form-control" name="feedbackName"
+                                        placeholder="Enter your Name Here" required>
+                                    <input type="email" class="form-control" name="feedbackEmail"
+                                        placeholder="Enter your Email Here" required>
+                                    <textarea class="form-control" placeholder="Enter your Message Here"
+                                        name="feedbackComment" cols="30" rows="5" required></textarea>
+                                    <div class="about-btn" style="float: right;">
+                                        <button type="submit" class="about-view packages-btn">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--local guide end-->
+
+    <!-- footer-copyright start -->
+    <section id="contact">
+        <footer class="footer-copyright">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="single-footer-item">
+                                <div class="footer-logo">
+                                    <a href="index.html">
+                                        Visit My<span>City</span>
+                                    </a>
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d344.30262861673395!2d73.83552123378685!3d18.465102384070253!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc295ed8144aebd%3A0xa33411c6a455191!2sSinhgad%20Institute%20of%20Management%20(SIOM)!5e0!3m2!1sen!2sin!4v1655025088984!5m2!1sen!2sin"
+                                        width="100%" height="100%" style="border-radius:5px;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <p>We are here!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="single-footer-item text-center">
+                                <h2 class="text-left">contacts</h2>
+                                <div class="single-footer-txt text-left">
+                                    <p>+91 8007878524</p>
+                                    <p class="foot-email"><a href="#">shubhamlagad@gmail.com</a></p>
+                                    <p>Vadgaon Budruk</p>
+                                    <p>Pune, India</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="single-footer-item">
+                                <div class="custom-input-group feedback">
+                                    <h2>
+                                        Send Feedback!
+                                    </h2>
+                                    <form action="/feedback" method="post">
+                                        <input type="text" class="form-control" name="feedbackName"
+                                            placeholder="Enter your Name Here" required>
+                                        <input type="email" class="form-control" name="feedbackEmail"
+                                            placeholder="Enter your Email Here" required>
+                                        <textarea class="form-control" placeholder="Enter your Message Here"
+                                            name="feedbackComment" cols="30" rows="4" required></textarea>
+                                        <div class="about-btn">
+                                            <button type="submit" class="about-view packages-btn">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="foot-icons ">
+                    <ul class="footer-social-links list-inline list-unstyled">
+                        <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-4"><i class="fa fa-whatsapp"></i></a></li>
+                    </ul>
+                    <p>&copy; 2022 <a href="https://www.visitmycity.co">VisitMyCity</a>. All Right Reserved</p>
+                </div>
+                <div id="scroll-Top">
+                    <i class="fa fa-angle-double-up return-to-top" id="scroll-top" data-toggle="tooltip"
+                        data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <!-- footer-copyright end -->
+    <!-- <script src="{{url_for('static',filename='js/locationpicker.jquery.js')}}"></script> -->
+    <script src="{{url_for('static',filename='js/locationjquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/locationPicker.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.js')}}"></script>
+
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootsnav.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.filterizr.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery-ui.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.counterup.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/waypoints.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/owl.carousel.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.sticky.js')}}"></script>
+    <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
+    <script src="{{url_for('static',filename='js/custom.js')}}"></script>
+    <script src="{{url_for('static',filename='js/validation.js')}}"></script>
+    <script src="{{url_for('static',filename='js/location.js')}}"></script>
+    <script src="{{url_for('static',filename='js/isotope.js')}}"></script>
+    <script src="{{url_for('static',filename='js/imagesloaded.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/nivo-lightbox.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/core.js')}}"></script>
+
+    {% block additionalScript %}
+    {% endblock %}
+
+</body>
+
+</html>

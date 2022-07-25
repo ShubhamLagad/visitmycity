@@ -1,0 +1,53 @@
+{% block locationLinks %}
+{% endblock %}
+{% extends "template.html" %}
+{% block navUser %}
+<li class="smooth-menu" style="margin-right:50px;">
+    <a>
+        <i class="fa fa-user-circle"> </i> Welcome, {{username}}
+    </a>
+</li>
+{% endblock %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block body %}
+
+<section class="dashboard">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav">
+                    <li><a href="/residents/dashboard"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li><a href="/residents/places"> <i class="fa fa-map-marker"></i> Places</a></li>
+                    <li><a href="/residents/events"> <i class="fa fa-calendar"></i> Events</a></li>
+                    <li><a href="/residents/articles"> <i class="fa fa-newspaper-o"></i> Articles</a></li>
+                    <li><a href="/residents/advertOffers"> <i class="fa fa-newspaper-o"></i> Offer/Advert.</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="campaign-timer">
+
+            {% block resident %}
+            {% endblock %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
