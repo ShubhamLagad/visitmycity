@@ -30,7 +30,7 @@
 
 {% if guideAccountExistsStatus %}
 <script>
-	
+
 	alert("The guide already exists in this town!")
 </script>
 {% endif %}
@@ -352,23 +352,24 @@
 					name="regPassword" id="regPassword" onclick="passWarn('passalert')" required>
 				<span class="text-danger" id="passalert"></span>
 				<input type="password" class="form-control" placeholder="Confirm Password" id="regCPassword"
-					name="regCPassword" onkeyup="checkPassword('regPassword','regCPassword','passalert','regButton')" required>
-				<div>
-					<strong style="float: left;">
-						<label style="float: left;">Select your location : </label>
-					</strong>
-					<br>
-					<br>
-					<small class="text-warning" style="float: left;">
-						Warning: Please make sure you are at the exact location.
-					</small>
-					<br>
-					<input type="hidden" id="lat" name="latitude" />
-					<input type="hidden" id="lng" name="longitude" />
-					<div id="locationPicker" style="border:0; border-radius:10px;width:100%; height:200px">
-						<!-- location picker body  -->
-					</div>
+					name="regCPassword" onkeyup="checkPassword('regPassword','regCPassword','passalert','regButton')"
+					required>
+				<!-- <div> -->
+				<strong style="float: left;">
+					<label style="float: left;">Select your location : </label>
+				</strong>
+				<br>
+				<br>
+				<small class="text-warning" style="float: left;">
+					Warning: Please make sure you are at the exact location.
+				</small>
+				<br>
+				<input type="hidden" id="lat" name="latitude" />
+				<input type="hidden" id="lng" name="longitude" />
+				<div id="locationPicker" style="border:0; border-radius:10px;width:100%; height:200px">
+					<!-- location picker body  -->
 				</div>
+				<!-- </div> -->
 				<div class="about-btn">
 					<button id="regButton" type="submit" class="about-view user-articles-btn">
 						register
@@ -388,8 +389,7 @@
 		<hr>
 		<div class="guide">
 			<form action="/addGuide" method="post" enctype="multipart/form-data">
-				<input type="text" pattern="*[A-Za-z ]" class="form-control" placeholder="Name" name="gname"
-					 required>
+				<input type="text" pattern="*[A-Za-z ]" class="form-control" placeholder="Name" name="gname" required>
 				<input type="email" class="form-control" placeholder="Email" name="gEmail" required>
 				<input type="text" pattern="*[0-9]" class="form-control" placeholder="Mobile No" name="gmobile"
 					minlength="10" maxlength="10" required>
@@ -398,7 +398,8 @@
 					name="regPassword" id="gregPassword" onclick="passWarn('gpassalert')" required>
 				<span class="text-danger" id="gpassalert"></span>
 				<input type="password" class="form-control" placeholder="Confirm Password" id="gregCPassword"
-					name="gCPassword" onkeyup="checkPassword('gregPassword','gregCPassword','gpassalert','gregButton')" required>
+					name="gCPassword" onkeyup="checkPassword('gregPassword','gregCPassword','gpassalert','gregButton')"
+					required>
 				<label for="forfile">Your Photo : </label>
 				<input type="file" name="photo" required>
 				<div>

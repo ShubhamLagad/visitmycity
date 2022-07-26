@@ -1854,7 +1854,8 @@ body {
   justify-content: center;
   padding-block:auto;
   padding-bottom: 100%;
-  height: fit-content;
+  max-height: min-content;
+  overflow-y: scroll;
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 .modal .form-control {
@@ -1867,6 +1868,7 @@ body {
 .modal-content {
   background-color: #fefefe;
   padding: 20px;
+  padding-bottom: 50px;
   border: 1px solid #888;
 }
 
