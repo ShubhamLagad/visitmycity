@@ -26,7 +26,7 @@ class Guide:
         coords_1 = (lat1, lon1)
         coords_2 = (lat2, lon2)
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
-        print("distance is : ", distance)
+        # print("distance is : ", distance)
         return distance
 
     def checkAlreadyExistsGuide(email,glocation):

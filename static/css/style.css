@@ -255,7 +255,8 @@ body {
 
 /*about-us-content*/
 .about-us-content {
-  margin: -175px 0 0 0;
+  margin: -170px 0 0 0;
+  margin-inline: 25%;
 }
 .about-us h2 {
   color: #fff;
@@ -263,11 +264,6 @@ body {
   text-transform: inherit;
   max-width: 800px;
   font-weight: 600;
-  line-height: 1.22;
-}
-.about-us h2 span {
-  color: #2bdab5;
-  margin-top: -11px;
 }
 .about-btn {
   margin-top: 39px;

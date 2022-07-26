@@ -20,13 +20,13 @@ with open('./placeTypes.json') as fp:
 
 def currentLocation():
     # manual location 
-    latlng = [18.50726567983806,73.80736959645382]
-    return latlng
+    # latlng = [18.50726567983806,73.80736959645382]
+    # return latlng
 
     # automatic location 
-    # g = geocoder.ip('me')
+    g = geocoder.ip('me')
     # print(g.latlng)
-    # return g.latlng
+    return g.latlng
 
 
 events = event.Event.getAllEvents()
@@ -264,7 +264,7 @@ def feddback():
         email = request.form.get('feedbackEmail')
         comment = request.form.get('feedbackComment')
         resident.Feedback(username, email, comment)
-    return redirect('/')
+    return render_template('index.html',localfeedback=True, events=events,localGuide=localGuide)
 
 
 # ============Guide routes=========
@@ -344,6 +344,12 @@ def viewArticles():
         return render_template('guide/articles.html', allArticles=allArticles)
     else:
         return redirect('/')
+
+
+@app.route('/sendOTP',methods=['POST','GET'])
+def sendOTP():
+    print('otp send')
+    return True
 
 
 @app.route('/logout')

@@ -15,6 +15,13 @@
 
 {% block body%}
 
+{% if localfeedback %}
+<script>
+	alert("Your message successfully send to your local guide!")
+	window.location.href = "/";
+</script>
+{% endif %}
+
 {% if registerSuccessStatus %}
 <script>
 	alert("Registration successfull!")
@@ -25,13 +32,14 @@
 {% if accountExistsStatus %}
 <script>
 	alert("Account already exists!")
+	window.location.href = "/";
 </script>
 {% endif %}
 
 {% if guideAccountExistsStatus %}
 <script>
-
 	alert("The guide already exists in this town!")
+	window.location.href = "/";
 </script>
 {% endif %}
 
@@ -48,12 +56,10 @@
 		<div class="about-us-content">
 			<div class="row">
 				<div class="col-sm-12">
-					<div class="single-about-us">
-						<div class="about-us-txt">
-							<h2>
-								Visit My <span>City</span>
-							</h2>
-						</div>
+					<div class="about-us-txt">
+						<h2>
+							Visit My <span>City</span>
+						</h2>
 					</div>
 				</div>
 			</div>
@@ -110,16 +116,18 @@
 							<input list="placeList" class="form-control" name="myCountry" id="myInput"
 								placeholder="Search here" style="width: 300px; height:50px;">
 							<datalist id="placeList">
-								<option value="Food">
-								<option value="Entertainment">
-								<option value="Sports">
-								<option value="Health">
-								<option value="Learning & Education">
+								<option value="food">
+								<option value="entertainment">
+								<option value="mobile_and_electronic">
+								<option value="sports">
+								<option value="temple">
+								<option value="beaty_and_wellness">
+								<option value="learning_and_education">
 							</datalist>
 						</div>
 						<div class="places-content">
 							<div class="row iso-box-wrapper" id="nearbycontent">
-								<div class="iso-box london col-md-4 col-sm-6">
+								<div class="iso-box sports col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/sports.jpg')}}"
 											alt="package-place">
@@ -133,7 +141,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="iso-box london col-md-4 col-sm-6">
+								<div class="iso-box temple col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/temple.jpg')}}"
 											alt="package-place">
@@ -147,7 +155,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="iso-box london col-md-4 col-sm-6">
+								<div class="iso-box mobile_and_electronic col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/Mobile and Electronics.jpg')}}"
 											alt="package-place">
@@ -161,7 +169,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="iso-box london paris ny col-md-4 col-sm-6">
+								<div class="iso-box food col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/hotel.jpg')}}"
 											alt="package-place">
@@ -175,12 +183,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="iso-box london ny hn col-md-4 col-sm-6">
+								<div class="iso-box beauty_and_wellness col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/Beaty & Wellness.jpg')}}"
 											alt="package-place">
 										<div class="single-package-item-txt text-center">
-											<h3>Beaty & Wellness</h3>
+											<h3>Beauty & Wellness</h3>
 											<div class="about-btn">
 												<button class="about-view user-articles-btn">
 													<a href="/places/beaty_and_wellness">Find Now</a>
@@ -189,7 +197,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="iso-box london hn col-md-4 col-sm-6">
+								<div class="iso-box entertainment col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/Entertainment.jpg')}}"
 											alt="package-place">
@@ -222,89 +230,58 @@
 <section id="service" class="service">
 	<div class="container">
 		<div class="service-counter text-center">
-			<div class="col-md-3 col-sm-3">
-				<div class="single-service-box">
-					<div class="service-content">
-						<div class="statistics-img">
-							<img src="{{url_for('static',filename='images/categories/business.png')}}"
-								alt="service-icon" />
-						</div>
-						<h2>
-							<a href="#">
-								Expand Your Business!
-							</a>
-						</h2>
-						<p>You can add your business details here. People will see it and visit.</p>
-						<a href="/addPlace" class="add-btn">
-							<button class="add add-things-btn">
-								<i class="fa fa-plus"> </i> Add Buisness Details
-							</button>
-						</a>
-					</div>
+			<div class="row">
+				<div class="col-sm-6 col-md-6 text-center"
+					style="padding: 50px; border:1px solid black; border-radius:5px; box-shadow:0 0 5px black;">
+					<h1> <i class="fa fa-adn"></i> Advertisement</h1>
+					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
+					<p>Advertise your product! <br> You can add your advertisement here.</p>
+					<a href="/addPlace" class="add-btn">
+						<button class="add add-things-btn">
+							<i class="fa fa-plus"> </i> Add Advertisement/Offers
+						</button>
+					</a>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="single-service-box">
-					<div class="service-content">
-						<div class="statistics-img">
-							<img src="{{url_for('static',filename='images/categories/navigate.jpg')}}"
-								alt="service-icon" />
-						</div>
-						<h2>
-							<a href="#">
-								Add your nearby missing places
-							</a>
-						</h2>
-						<p>You can able to add your nearby places like hotels,grocerry-store,sport-grounds,etc.</p>
-						<a href="/addPlace" class="add-btn">
-							<button class="add add-things-btn">
-								<i class="fa fa-plus"> </i> Add Missing Place
-							</button>
-						</a>
-					</div>
+				<div class="col-sm-6 col-md-6 text-center"
+					style="padding: 50px; border:1px solid black; border-radius:5px; box-shadow:0 0 5px black;">
+					<h1>
+						<i class="fa fa-map-marker"></i> Add your nearby places
+					</h1>
+					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
+					<p>You can able to add your nearby places like hotels,grocerry-store,sport-grounds,etc.</p>
+					<a href="/addPlace" class="add-btn">
+						<button class="add add-things-btn">
+							<i class="fa fa-plus"> </i> Add Missing Place
+						</button>
+					</a>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="single-service-box">
-					<div class="service-content">
-						<div class="statistics-img">
-							<img src="{{url_for('static',filename='images/categories/events.jpg')}}"
-								alt="service-icon" />
-						</div>
-						<h2>
-							<a href="#">
-								Let! Add an event.
-							</a>
-						</h2>
-						<p> Add your events and invite your nearby people.</p>
-						<a href="/addEvent" class="add-btn">
-							<button class="add add-things-btn">
-								<i class="fa fa-plus"> </i> Add Event
-							</button>
-						</a>
-					</div>
+				<div class="col-sm-6 col-md-6 text-center"
+					style="padding: 50px; border:1px solid black; border-radius:5px; box-shadow:0 0 5px black;">
+					<h1>
+					 <i class="fa fa-newspaper-o"></i>	Let! Add an Article.
+					</h1>
+					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
+					<p> You can able to add information of your city through an articles.</p>
+					<a href="/addArticle" class="add-btn">
+						<button class="add add-things-btn">
+							<i class="fa fa-plus"> </i> Add Articles
+						</button>
+					</a>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="single-service-box">
-					<div class="service-content">
-						<div class="statistics-img">
-							<img src="{{url_for('static',filename='images/categories/articles.png')}}"
-								alt="service-icon" />
-						</div>
-						<h2>
-							<a href="#">
-								Let! Articles about your city.
-							</a>
-						</h2>
-						<p> You can able to add information of your city through an articles.</p>
-						<a href="/addArticle" class="add-btn">
-							<button class="add add-things-btn">
-								<i class="fa fa-plus"> </i> Add Articles
-							</button>
-						</a>
-					</div>
+				<div class="col-sm-6 col-md-6 text-center"
+					style="padding: 50px; border:1px solid black; border-radius:5px; box-shadow:0 0 5px black;">
+					<h1>
+					 <i class="fa fa-calendar"></i>	Let! Add an event.
+					</h1>
+					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
+					<p> Add your events and invite your nearby people.</p>
+					<a href="/addEvent" class="add-btn">
+						<button class="add add-things-btn">
+							<i class="fa fa-plus"> </i> Add Event
+						</button>
+					</a>
 				</div>
+
 			</div>
 		</div>
 	</div>
