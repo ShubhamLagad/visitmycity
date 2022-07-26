@@ -1852,24 +1852,23 @@ body {
 .modal {
   display: none;
   justify-content: center;
-  padding-block:auto;
-  padding-bottom: 100%;
-  max-height: min-content;
+  background-color: rgba(12, 11, 11, 0.8);
+  margin-block: 10px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
   overflow-y: scroll;
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  border: 1px solid #888;
+  height: 350px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.26), 0 26px 52px rgba(0, 0, 0, 0.26);
 }
 .modal .form-control {
   margin-block: 10px;
   padding-block: 20px;
   width: 300px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  padding: 20px;
-  padding-bottom: 50px;
-  border: 1px solid #888;
 }
 
 /* The Close Button */
