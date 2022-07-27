@@ -1,0 +1,32 @@
+{% extends "admin/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block admin %}
+<table class="table text-capitalize">
+    <thead>
+        <tr>
+            <th>sr no</th>
+            <th>name</th>
+            <th>email</th>
+            <th>mobile</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in allResidents %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{res[1]}}</td>
+            <td class="text-lowercase">{{res[2]}}</td>
+            <td>{{res[3]}}</td>
+            <td><a href="/delete/resident/{{res[2]}}"><i class="fa fa-trash fa-2x text-danger"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

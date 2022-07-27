@@ -232,3 +232,32 @@ function guide_register_close() {
 
 
 
+// ------------Login login_modal-----------
+var admin_login_modal = document.getElementById("admin-login-modal");
+// var guide_login_btn = document.getElementById("admin-login-btn");
+onload = function () {
+    admin_login_modal.style.display = "none";
+}
+$('#admin-login-btn').click(function () {
+    admin_login_modal.style.display = "flex";
+})
+$('#admin-login-close').click(function () {
+    admin_login_modal.style.display = "none";
+})
+
+
+
+onload = function () {
+    var admin_reg_modal = document.getElementById("admin-login-modal");
+    admin_reg_modal.style.display = "none";
+}
+function admin_reg_btn() {
+    var admin_reg_modal = document.getElementById("admin-login-modal");
+    admin_reg_modal.style.display = "flex";
+}
+function admin_login_close() {
+    var admin_reg_modal = document.getElementById("admin-login-modal");
+    admin_reg_modal.style.display = "none";
+}
+
+

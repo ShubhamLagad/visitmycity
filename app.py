@@ -1,7 +1,7 @@
 import json
 import os
 from flask import Flask, redirect, render_template, request, session
-from modulesPackage import guide, resident, event, place, article,advert_offers
+from modulesPackage import guide, resident, event, place, article,advert_offers,admin
 import geocoder
 from datetime import date
 
@@ -346,16 +346,104 @@ def viewArticles():
         return redirect('/')
 
 
-@app.route('/sendOTP',methods=['POST','GET'])
-def sendOTP():
-    print('otp send')
-    return True
+@app.route('/admin/dashboard',methods=['POST','GET'])
+def adminDashboard():
+    if request.method == 'POST':
+        username = request.form.get('adminUsername')
+        password = request.form.get('adminPassword')
+        if username=='admin@gmail.com' and password=='admin@123':
+            session['adminusername'] = username
+            count = admin.Admin.getCount()
+            return render_template('admin/dashboard.html',count=count)
+        
+    if 'adminusername' in session:
+        count = admin.Admin.getCount()
+        return render_template('admin/dashboard.html',count=count)
+    else:
+        return redirect('/')
+
+
+
+@app.route('/admin/articles')
+def allArticles():
+    if 'adminusername' in session:
+        allArticles = admin.Admin.getAllArticles()
+        return render_template('admin/articles.html', allArticles=allArticles)
+    else:
+        return redirect('/') 
+    
+    
+    
+@app.route('/admin/places')
+def allPlaces():
+    if 'adminusername' in session:
+        allPlaces = admin.Admin.getAllPlaces()
+        return render_template('admin/places.html', allPlaces=allPlaces)
+    else:
+        return redirect('/') 
+    
+    
+@app.route('/admin/events')
+def allEvents():
+    if 'adminusername' in session:
+        allEvents = admin.Admin.getAllEvents()
+        return render_template('admin/events.html', allEvents=allEvents)
+    else:
+        return redirect('/') 
+    
+    
+@app.route('/admin/advtOffer')
+def allAdvtOffer():
+    if 'adminusername' in session:
+        allAdvtOffer = admin.Admin.getAllAdvtOffers()
+        return render_template('admin/advtOffer.html', allAdvtOffer=allAdvtOffer)
+    else:
+        return redirect('/') 
+    
+    
+@app.route('/admin/feedbacks')
+def allFeedbacks():
+    if 'adminusername' in session:
+        allFeedbacks = admin.Admin.getAllFeedbacks()
+        return render_template('admin/feedbacks.html', allFeedbacks=allFeedbacks)
+    else:
+        return redirect('/') 
+    
+    
+@app.route('/admin/residents')
+def allResidents():
+    if 'adminusername' in session:
+        allResidents = admin.Admin.getAllResidents()
+        return render_template('admin/residents.html', allResidents=allResidents)
+    else:
+        return redirect('/') 
+    
+    
+@app.route('/admin/guides')
+def allGuides():
+    if 'adminusername' in session:
+        allGuides = admin.Admin.getAllGuides()
+        return render_template('admin/guides.html', allGuides=allGuides)
+    else:
+        return redirect('/') 
+    
+
+@app.route('/delete/resident/<string:email>',methods=['GET'])
+def deleteResident(email):
+    if 'adminusername' in session:
+        result= resident.Resident.deleteResident(email)
+        print(result)
+        return redirect('/admin/residents')
+
 
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
+
+
 
 
 if __name__ == '__main__':

@@ -1,0 +1,100 @@
+{% extends "admin/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block admin %}
+<div class="row">
+    <div class="col-sm-6 resident-profile">
+        <div class="card">
+            <div>
+                <span class="title">Your Profile</span>
+            </div>
+            <hr>
+            <script>
+                function showPass() {
+                    var x = document.getElementById('password')
+                    x.type = 'text'
+                }
+
+                function changeReadonly(id) {
+                    document.getElementById(id).readOnly = false
+                    document.getElementById(id).focus();
+                }
+            </script>
+            <form action="#" method="post">
+                <div class="">
+                    <div class="col-sm-8" style="float: left;">
+                        <label for="basic-url">Your Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="System Admin" id="rname" name="rname"
+                                readonly aria-describedby="basic-addon2">
+                            <span style="height:fit-content ;" onclick="changeReadonly('rname')"
+                                class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                        <label for="basic-url">Your Email</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="admin@gmail.com" id="remail" readonly
+                                aria-describedby="basic-addon2">
+                            <span onclick="changeReadonly('remail')" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                        <label for="basic-url">Your Password</label>
+                        <div class="input-group">
+                            <span onclick="showPass()" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                            <input type="password" class="form-control" value="" readonly
+                                aria-describedby="basic-addon2" value="123456" id="password">
+                            <span onclick="changeReadonly('password')" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <hr>
+                        <span style="display: flex; justify-content:center;"><button disabled type="submit"
+                                class="btn btn-primary"><a href="" style="color: #fff;">Update
+                                    Profile </a></button></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-6 resident-details admin-details">
+        <div class="row card">
+            <div class="col-sm-5">
+                <h1>{{count['resident']}}<sub><small>residents</small></sub></h1>
+                <h2>Registered</h2>
+            </div>
+            <div class="col-sm-5">
+                <h1>{{count['resident']}}<sub><small>guides</small></sub></h1>
+                <h2>Registered</h2>
+            </div>
+            <div class="col-sm-5">
+                <h1>{{count['place']}}<sub><small>places</small></sub></h1>
+                <h2>Uploaded</h2>
+            </div>
+            <div class="col-sm-5 ">
+                <h1>{{count['event']}}<sub><small>events</small></sub></h1>
+                <h2>Uploaded</h2>
+            </div>
+            <div class="col-sm-5">
+                <h1>{{count['article']}}<sub><small>articles</small></sub></h1>
+                <h2>Uploaded</h2>
+            </div>
+            <div class="col-sm-5">
+                <h1>{{count['offers']}}<sub><small>offers/advertisement</small></sub></h1>
+                <h2>Added</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

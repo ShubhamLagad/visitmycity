@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <!-- META DATA -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visit My City</title>
+    <link rel="shortcut icon" type="image/icon" href="{{url_for('static',filename='logo/favicon.png')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}" />
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/hover-min.css')}}"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/datepicker.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootsnav.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/validation.css')}}" />
+</head>
+
+<body>
+    <!-- main-menu Start -->
+    <header class="top-area">
+        <div class="header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <a href="/residents/dashboard">
+                                Visit My <span>City</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="main-menu">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="smooth-menu"><a href="#home">Home</a></li>
+                                    <li class="smooth-menu"><a href="#contact">Contact </a></li>
+                                    <li class="smooth-menu"><a href="#offers">Offers</a></li>
+                                    <li class="smooth-menu"><a href="#">Help</a></li>
+                                    {% block navButton %}{% endblock %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-border"></div>
+            </div>
+        </div>
+    </header>
+    <section class="dashboard">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav">
+                        <li><a href="/admin/dashboard"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="/admin/residents"> <i class="fa fa-user-circle-o"></i> Residents</a></li>
+                        <li><a href="/admin/places"> <i class="fa fa-map-marker"></i> Places</a></li>
+                        <li><a href="/admin/events"> <i class="fa fa-calendar"></i> Events</a></li>
+                        <li><a href="/admin/advtOffer"> <i class="fa fa-newspaper-o"></i> Advt/Offer</a></li>
+                        <li><a href="/admin/articles"> <i class="fa fa-newspaper-o"></i> Articles</a></li>
+                        <li><a href="/admin/guides"> <i class="fa fa-newspaper-o"></i> Guides</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="campaign-timer">
+
+                {% block admin %}
+                {% endblock %}
+
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- footer-copyright start -->
+    <section id="contact">
+        <footer class="footer-copyright">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="single-footer-item">
+                                <div class="footer-logo">
+                                    <a href="index.html">
+                                        Visit My<span>City</span>
+                                    </a>
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d344.30262861673395!2d73.83552123378685!3d18.465102384070253!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc295ed8144aebd%3A0xa33411c6a455191!2sSinhgad%20Institute%20of%20Management%20(SIOM)!5e0!3m2!1sen!2sin!4v1655025088984!5m2!1sen!2sin"
+                                        width="100%" height="100%" style="border-radius:5px;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <p>We are here!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="single-footer-item text-center">
+                                <h2 class="text-left">contacts</h2>
+                                <div class="single-footer-txt text-left">
+                                    <p>+91 8007878524</p>
+                                    <p class="foot-email"><a href="#">shubhamlagad@gmail.com</a></p>
+                                    <p>Vadgaon Budruk</p>
+                                    <p>Pune, India</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="single-footer-item">
+                                <div class="custom-input-group feedback">
+                                    <h2>
+                                        Send Feedback!
+                                    </h2>
+                                    <form action="/feedback" method="post">
+                                        <input type="text" class="form-control" name="feedbackName"
+                                            placeholder="Enter your Name Here">
+                                        <input type="email" class="form-control" name="feedbackEmail"
+                                            placeholder="Enter your Email Here">
+                                        <textarea class="form-control" placeholder="Enter your Message Here"
+                                            name="feedbackComment" cols="30" rows="4"></textarea>
+                                        <div class="about-btn">
+                                            <button type="submit" class="about-view packages-btn">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="foot-icons ">
+                    <ul class="footer-social-links list-inline list-unstyled">
+                        <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-4"><i class="fa fa-whatsapp"></i></a></li>
+                    </ul>
+                    <p>&copy; 2022 <a href="https://www.visitmycity.co">VisitMyCity</a>. All Right Reserved</p>
+                </div>
+                <div id="scroll-Top">
+                    <i class="fa fa-angle-double-up return-to-top" id="scroll-top" data-toggle="tooltip"
+                        data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <!-- footer-copyright end -->
+
+
+    <script src="{{url_for('static',filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootsnav.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.filterizr.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery-ui.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.counterup.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/waypoints.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/owl.carousel.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.sticky.js')}}"></script>
+    <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
+    <script src="{{url_for('static',filename='js/custom.js')}}"></script>
+    <script src="{{url_for('static',filename='js/validation.js')}}"></script>
+    <script src="{{url_for('static',filename='js/location.js')}}"></script>
+    <script src="{{url_for('static',filename='js/locationPicker.js')}}"></script>
+    <script src="{{url_for('static',filename='js/isotope.js')}}"></script>
+    <script src="{{url_for('static',filename='js/imagesloaded.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/nivo-lightbox.min.js')}}"></script>
+    {% block additionalScript %}
+    {% endblock %}
+
+</body>
+
+</html>

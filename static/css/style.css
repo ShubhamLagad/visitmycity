@@ -952,7 +952,6 @@ body {
   border-radius: 50%;
 } /*.home1-testm-img*/
 
-
 .user-feedback .owl-theme .owl-nav.disabled + .owl-dots {
   margin-top: 20px;
 }
@@ -1746,7 +1745,7 @@ body {
 /* ======================================================================= */
 .places {
   padding: 120px 0 90px;
-  background-color: rgb(4, 9, 20,0.9);
+  background-color: rgb(4, 9, 20, 0.9);
   color: #fff;
 }
 .places .places-header h2 {
@@ -2016,7 +2015,7 @@ input[type="tel"] {
 .dashboard nav li {
   display: inline-block;
   margin-inline: auto;
-  padding-inline: 40px;
+  padding-inline: 20px;
 }
 
 .dashboard nav li a {
@@ -2190,19 +2189,28 @@ input[type="tel"] {
   background-color: rgb(9, 136, 36);
 }
 
-
-
-
 /* guide style  */
-.guide-info .input-group{
+.guide-info .input-group {
   margin-block: 10px;
 }
-label{
+label {
   margin-top: 10px;
-
 }
 
-#passwarn{
+#passwarn {
   position: relative;
   width: fit-content;
+}
+
+.admin-details .col-sm-5 {
+  box-shadow: 0 0 5px black;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  color: rgb(16, 16, 55);
+}
+
+.admin-details .col-sm-5 h1,
+.admin-details .col-sm-5 h2 {
+  color: rgb(16, 16, 55);
 }

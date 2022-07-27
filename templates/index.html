@@ -289,7 +289,7 @@
 <!--service end-->
 
 
-<!-- ---------------Login Modal start----------------------->
+<!-- ---------------resident Login Modal start----------------------->
 <div id="login-modal" class="modal">
 	<div class="modal-content">
 		<span id="login-close" class="close login-close">&times;</span>
@@ -310,7 +310,7 @@
 		</form>
 	</div>
 </div>
-<!-- ---------------Login Modal end------------------------>
+<!-- ---------------resident Login Modal end------------------------>
 
 
 <!-- ---------------Register Modal start------------------->
@@ -422,6 +422,26 @@
 	</div>
 </div>
 <!-- ---------------Guide Login Modal end------------------------>
+
+
+<!-- ---------------Admin Login Modal end------------------------>
+<div id="admin-login-modal" class="modal" style="display: none;">
+	<div class="modal-content">
+		<span id="admin-login-close" onclick="admin_login_close()" class="close login-close">&times;</span>
+		<h2>Login</h2>
+		<hr>
+		<form action="/admin/dashboard" method="post">
+			<input type="email" class="form-control" placeholder="Username" name="adminUsername">
+			<input type="password" class="form-control" placeholder="Password" name="adminPassword">
+			<div class="about-btn">
+				<button type="submit" class="about-view user-articles-btn">
+					Login
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- ---------------admin Login Modal end------------------------>
 
 
 {% if login %}
