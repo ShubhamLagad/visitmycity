@@ -9,73 +9,87 @@
 {% block resident %}
 <div class="col-sm-12">
   <h2 class="page-header">Add an Advertisements or Offers</h2>
-  <form action="/addAdvertOffer" method="post" enctype="multipart/form-data">
-    <div class="row">
-      <div class="col-md-6">
-        <div>
-          <input type="text" class="form-control" placeholder="Title or name of store" name="title" />
-        </div>
-        <div>
-          <input class="form-control" type="text" name="heading" placeholder="Heading of the addvertisement/offer" required>
-        </div>
-        <script>
-          function addMoreContent(){
-            let cnt = document.getElementById('count').value; 
-              let contentEle = document.getElementById('adContent')
-              let inpELe = document.createElement('input')
-              let name = "content"+cnt
-              console.log(name)
-              inpELe.setAttribute('name',name)
-              inpELe.setAttribute('class','form-control')
-              inpELe.setAttribute('type','text')
-              let plac = "Content "+cnt
-              inpELe.setAttribute('placeholder',plac)
-              inpELe.setAttribute('maxlength',35)
-              contentEle.appendChild(inpELe)
-              document.getElementById('count').value = ++cnt
-              if(cnt>5){
-                document.getElementById('addBtn').disabled=true
-              }
-          }
-        </script>
-        <div>
-          <label>Advertisement/Offer content : </label><br>
-          <small class="text-warning">For example: 20% off on notebooks</small>
-          <div id="adContent">
-            <input type="number" name="cnt" value="2" id="count">
-            <input class="form-control" type="text" name="content1" maxlength="35" placeholder="Content 1">
+  <div class="col-sm-12">
+    <span style="float:center;margin:10px;"><button onclick="togglePage()" class="btn" style="width:45%;">Offers</button></span><span style="float:center;"><button onclick="togglePage()" class="btn" style="width:45%;">Advertisement</button></span>
+    <hr>
+  </div>
+  <div id="firstpage" class="row">
+    <form action="/addOffer" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <input type="text" class="form-control" placeholder="Title or name of store" name="title" required />
           </div>
-          <span style="float: right;"><button type="button" id="addBtn" class="btn" onclick="addMoreContent()"><i class="fa fa-plus"></i> Add More</button><br><small
-              class="text-warning">(min 5 contents)</small></span>
+          <script>
+            function addMoreContent(){
+              let cnt = document.getElementById('count').value; 
+                let contentEle = document.getElementById('adContent')
+                let inpELe = document.createElement('input')
+                let name = "content"+cnt
+                console.log(name)
+                inpELe.setAttribute('name',name)
+                inpELe.setAttribute('class','form-control')
+                inpELe.setAttribute('type','text')
+                let plac = "Content "+cnt
+                inpELe.setAttribute('placeholder',plac)
+                inpELe.setAttribute('maxlength',35)
+                contentEle.appendChild(inpELe)
+                document.getElementById('count').value = ++cnt
+                if(cnt>5){
+                  document.getElementById('addBtn').disabled=true
+                }
+            }
+          </script>
+          <div>
+            <label>Advertisement/Offer content : </label><br>
+            <small class="text-warning">For example: 20% off on notebooks</small>
+            <div id="adContent">
+              <input type="number" name="cnt" value="2" id="count">
+              <input class="form-control" type="text" name="content1" maxlength="35" placeholder="Content 1" required>
+            </div>
+            <span style="float: right;"><button type="button" id="addBtn" class="btn" onclick="addMoreContent()"><i class="fa fa-plus"></i> Add More</button><br><small
+                class="text-warning">(min 5 contents)</small></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-control-label" for="">Upload your store image</label>
+          <input type="file" name="file" class="form-control" required/>
+          <strong style="float: left;">
+            <label style="float: left;">Select location(optional): </label>
+          </strong>
+          <br>
+          <br>
+          <small class="text-warning" style="float: left;">
+            Warning: Please make sure you are at the exact location.
+          </small>
+          <br>
+          <input type="hidden" id="lat" name="latitude" />
+          <input type="hidden" id="lng" name="longitude" />
+          <div id="locationPicker" style="border:0; border-radius:10px;width:100%; height:300px">
+            <!-- location picker body  -->
+          </div>
+        </div>
+        <div class="col-sm-12" style="display:flex;justify-content:center ;">
+          <div class="about-btn">
+            <button type="submit" class="about-view add-articles-btn">
+              Submit
+            </button>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <label class="form-control-label" for="">Upload Image</label>
-        <input type="file" name="file" class="form-control" />
-        <strong style="float: left;">
-          <label style="float: left;">Select location(optional): </label>
-        </strong>
-        <br>
-        <br>
-        <small class="text-warning" style="float: left;">
-          Warning: Please make sure you are at the exact location.
-        </small>
-        <br>
-        <input type="hidden" id="lat" name="latitude" />
-        <input type="hidden" id="lng" name="longitude" />
-        <div id="locationPicker" style="border:0; border-radius:10px;width:100%; height:300px">
-          <!-- location picker body  -->
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="about-btn">
-          <button type="submit" class="about-view add-articles-btn">
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
+  <div id="secondpage" class="row" style="display:none;">
+    <form action="addAdvertisement" method="post" enctype="multipart/form-data">
+      <label class="form-control-label" for="">Upload your advertisement poster</label>
+          <input type="file" name="file" class="form-control" />
+          <div class="about-btn">
+            <button type="submit" class="about-view add-articles-btn">
+              Submit
+            </button>
+          </div>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

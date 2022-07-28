@@ -1541,8 +1541,8 @@ body {
 }
 
 .user-offers .owl-carousel .owl-item img {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   border-radius: 10px;
 }
 
@@ -1571,7 +1571,7 @@ body {
 .user-offers .home-testm-txt h3 {
   display: block;
   color: #ffc107;
-  font-size: 36px;
+  font-size: 26px;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
   text-transform: capitalize;

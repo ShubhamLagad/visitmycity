@@ -1,0 +1,36 @@
+{% extends "admin/template.html" %}
+{% block navButton %}
+<li class="smooth-menu">
+    <a href="/logout">
+        <button class="btn btn-danger"> <i class="fa fa-sign-out"> </i> Logout</button>
+    </a>
+</li>
+{% endblock %}
+{% block admin %}
+<table class="table text-capitalize">
+    <thead>
+        <tr>
+            <th>sr no</th>
+            <th>name</th>
+            <th>photo</th>
+            <th>email</th>
+            <th>mobile</th>
+            <th>location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in allGuides %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{res[1]}}</td>
+            {% set fname = "images/guide/"+res[6] %}
+            <td> <img src="{{ url_for('static',filename=fname) }}" alt="not found" width="100px" height="150px"> </td>
+            <td class="text-lowercase">{{res[2]}}</td>
+            <td>{{res[3]}}</td>
+            <td><a href="/delete/guide/{{res[1]}}"><i class="fa fa-trash fa-2x text-danger"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

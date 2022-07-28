@@ -1,33 +1,52 @@
-from modulesPackage.connection import mydb
+from modulesPackage.connection import mydb,myCursor
+from math import ceil
+import geopy.distance
 
 class Article:
-    def __init__(self,username,	writername,article_content,photo,pdate,rating,pincode):
-        myCursor = mydb.cursor()
-        query = "insert into article(username,writername,article_content,photo,pdate,rating,pincode) values(?,?,?,?,?,?,?)"
-        val = (username,writername,article_content,photo,pdate,rating,pincode)
+    def __init__(self,username,	title,article_content,photo,pdate,alocation):
+        query = "insert into article(username,title,article_content,photo,pdate,alocation) values(?,?,?,?,?,?)"
+        val = (username,title,article_content,photo,pdate,alocation)
         myCursor.execute(query,val)
         mydb.commit()
-        print("article insrted")
         
     
     def getAllArticles():
-        mycursor = mydb.cursor()
         query = "select * from article"
-        mycursor.execute(query)
-        result = mycursor.fetchall()
+        myCursor.execute(query)
+        result = myCursor.fetchall()
         return result
     
     def getResidentsArticles(username):
-        mycursor = mydb.cursor()
         query = f"select * from article where username='{username}'"
-        mycursor.execute(query)
-        result = mycursor.fetchall()
+        myCursor.execute(query)
+        result = myCursor.fetchall()
         return result
     
     
-    def getGuideArticles(pincode):
-        mycursor = mydb.cursor()
-        query = f"select * from article where pincode={pincode}"
-        mycursor.execute(query)
-        result = mycursor.fetchall()
-        return result
+    def deleteArticle(ano):
+        query = f"delete from article where ano={ano}"
+        myCursor.execute(query)
+        mydb.commit()
+        
+        
+    def getDistanceOfLocation(guideLocation, articleLocation):
+        # place location
+        lat1 = float(articleLocation.split(',')[0])
+        lon1 = float(articleLocation.split(',')[1])
+        # guide location
+        lat2 = float(guideLocation.split(',')[0])
+        lon2 = float(guideLocation.split(',')[1])
+        coords_1 = (lat1, lon1)
+        coords_2 = (lat2, lon2)
+        distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
+        return distance
+        
+    def getGuideArticles(guideLocation):
+        places=[]
+        query = f"select * from article"
+        myCursor.execute(query)
+        result = myCursor.fetchall()
+        for res in result:
+            if Article.getDistanceOfLocation(guideLocation, res[6])<3:
+                places.append(res)
+        return places

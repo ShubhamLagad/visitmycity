@@ -1,4 +1,6 @@
+from math import ceil
 from flask import session
+import geopy.distance
 from modulesPackage.connection import mydb, myCursor
 
 
@@ -82,7 +84,32 @@ class Resident:
     def deleteResident(email):
         query = f"delete from resident where email='{email}'"
         myCursor.execute(query)
+        mydb.commit()
         return myCursor.execute(query)
+    
+    def getDistanceOfLocation(guideLocation, resLocation):
+        # resident location
+        lat1 = float(resLocation.split(',')[0])
+        lon1 = float(resLocation.split(',')[1])
+        # guide location
+        lat2 = float(guideLocation.split(',')[0])
+        lon2 = float(guideLocation.split(',')[1])
+        coords_1 = (lat1, lon1)
+        coords_2 = (lat2, lon2)
+        distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
+        # print("distance is : ", distance)
+        return distance
+    
+    def getGuideResident(guideLocation):
+        print(guideLocation)
+        residents=[]
+        query = f"select * from resident"
+        myCursor.execute(query)
+        result = myCursor.fetchall()
+        for res in result:
+            if Resident.getDistanceOfLocation(guideLocation, res[5])<3:
+                residents.append(res)
+        return residents
 
 class Feedback:
     def __init__(self, username, email, comment):

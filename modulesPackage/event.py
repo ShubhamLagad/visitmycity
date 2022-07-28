@@ -1,6 +1,8 @@
 from modulesPackage.connection import mydb,myCursor
 import datetime
 import calendar
+from math import ceil
+import geopy.distance
 
 
 class Event:
@@ -42,12 +44,34 @@ class Event:
         
         return result
     
-    # get guide events 
-    def getGuideEvents(town):
-        # mycursor = mydb.cursor()
-        query = f"select * from event where town='{town}'"
+   
+    
+    
+    def deleteEvent(eno):
+        query = f"delete from event where eno={eno}"
+        myCursor.execute(query)
+        mydb.commit()
+        
+        
+        
+    def getDistanceOfLocation(guideLocation, eventLocation):
+        # place location
+        lat1 = float(eventLocation.split(',')[0])
+        lon1 = float(eventLocation.split(',')[1])
+        # guide location
+        lat2 = float(guideLocation.split(',')[0])
+        lon2 = float(guideLocation.split(',')[1])
+        coords_1 = (lat1, lon1)
+        coords_2 = (lat2, lon2)
+        distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
+        return distance
+        
+    def getGuideEvents(guideLocation):
+        places=[]
+        query = f"select * from event"
         myCursor.execute(query)
         result = myCursor.fetchall()
-        
-        return result
-    
+        for res in result:
+            if Event.getDistanceOfLocation(guideLocation, res[8])<3:
+                places.append(res)
+        return places

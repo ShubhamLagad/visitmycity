@@ -1,4 +1,4 @@
-{% extends "admin/template.html" %}
+{% extends "guide/template.html" %}
 {% block navButton %}
 <li class="smooth-menu">
     <a href="/logout">
@@ -6,15 +6,15 @@
     </a>
 </li>
 {% endblock %}
-{% block admin %}
+{% block guide %}
 <table class="table text-capitalize">
     <thead>
         <tr>
             <th>sr no</th>
+            <th>Username</th>
             <th>Title/Store Name</th>
             <th>Content</th>
             <th>Image</th>
-            <th>location</th>
             <th>action</th>
         </tr>
     </thead>
@@ -22,14 +22,11 @@
         {% for res in allAdvtOffer %}
         <tr>
             <td>{{loop.index}}</td>
+            <td>{{res[1]}}</td>
             <td>{{res[2]}}</td>
             <td>{{res[3]}}</td>
             {% set imgname ="images/offers/"+res[4] %}
             <td><img src="{{ url_for('static',filename=imgname) }}" alt="" srcset="" width="100px" height="100px"></td>
-            {% if res[6]!="," %}
-            {% set url ="http://maps.google.de/maps?q=loc:"+res[5] %}
-            <td><button class="btn btn-info text-uppercase"><a style="font-weight: 600;color:#fff;"   href="{{url}}" target="_blank">get direction <i class="fa fa-location-arrow"></i></a> </button></td>
-            {% endif %}
             <td><a href="/delete/advtoffer/{{res[0]}}"><i class="fa fa-trash fa-2x text-danger"></i></a></td>
         </tr>
         {% endfor %}

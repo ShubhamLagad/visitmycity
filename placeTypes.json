@@ -2,8 +2,10 @@
     "placeTypes":[
         "food",
         "sports",
+        "vegetable",
         "entertainment",
         "temples",
+        "mall",
         "mobile_and_electronics",
         "beaty_and_wellness",
         "learning_and_education",
@@ -13,10 +15,12 @@
         "stationary",
         "road",
         "gym",
+        "hostel",
         "daily_needs",
-        "Cafe",
+        "cafe",
         "hill station",
         "college",
-        "waterpark"
+        "waterpark",
+        "lounge"
     ]
 }

@@ -26,11 +26,9 @@ class Guide:
         coords_1 = (lat1, lon1)
         coords_2 = (lat2, lon2)
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
-        # print("distance is : ", distance)
         return distance
 
     def checkAlreadyExistsGuide(email,glocation):
-        # mycursor = mydb.cursor()
         query = f"select glocation,email from guide"
         myCursor.execute(query)
         result = myCursor.fetchall()
@@ -44,7 +42,6 @@ class Guide:
                 return False
 
     def checkValidGuide(email, password):
-        # mycursor = mydb.cursor()
         query = f"select * from guide where email='{email}' and password='{password}'"
         myCursor.execute(query)
         result = myCursor.fetchall()
@@ -55,7 +52,6 @@ class Guide:
             return True
 
     def getAllGuides():
-        # mycursor = mydb.cursor()
         query = "select * from guide"
         myCursor.execute(query)
         result = myCursor.fetchall()
@@ -63,7 +59,6 @@ class Guide:
         return result
 
     def getGuide(email):
-        # mycursor = mydb.cursor()
         query = f"select * from guide where email='{email}'"
         myCursor.execute(query)
         result = myCursor.fetchall()
@@ -71,7 +66,6 @@ class Guide:
         return result
 
     def getLocalGuide(latlng):
-        # mycursor = mydb.cursor()
         query = "select * from guide"
         myCursor.execute(query)
         result = myCursor.fetchall()
@@ -79,3 +73,16 @@ class Guide:
             if Guide.getDistanceOfLocation(res[5], latlng) < 3:
                 return res
         return None
+    
+    
+    def deleteGuide(email):
+        query = f"delete from guide where email='{email}'"
+        myCursor.execute(query)
+        mydb.commit()
+        
+        
+    def getLocation(email):
+        query = f"select glocation from guide where email='{email}'"
+        myCursor.execute(query)
+        result = myCursor.fetchall()
+        return result

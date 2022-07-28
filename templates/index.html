@@ -236,7 +236,7 @@
 					<h1> <i class="fa fa-adn"></i> Advertisement</h1>
 					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
 					<p>Advertise your product! <br> You can add your advertisement here.</p>
-					<a href="/addPlace" class="add-btn">
+					<a href="/addAdvertOffer" class="add-btn">
 						<button class="add add-things-btn">
 							<i class="fa fa-plus"> </i> Add Advertisement/Offers
 						</button>
@@ -325,7 +325,7 @@
 				<input type="email" class="form-control" placeholder="Email" name="regEmail" required>
 				<input type="text" pattern="*[0-9]" class="form-control" placeholder="Mobile No" name="mobile"
 					minlength="10" maxlength="10" required>
-				<input type="password" class="form-control" placeholder="Password" minlength="4" maxlength="8"
+				<input type="password" class="form-control" placeholder="Password" minlength="8" maxlength="16"
 					name="regPassword" id="regPassword" onclick="passWarn('passalert')" required>
 				<span class="text-danger" id="passalert"></span>
 				<input type="password" class="form-control" placeholder="Confirm Password" id="regCPassword"
@@ -452,14 +452,6 @@
 {% endif %}
 
 {% if registerSuccessStatus %}
-<script>
-	var login_modal = document.getElementById("login-modal");
-	login_modal.style.display = "flex";
-</script>
-{% endif %}
-
-
-{% if loginStatus %}
 <script>
 	var login_modal = document.getElementById("login-modal");
 	login_modal.style.display = "flex";

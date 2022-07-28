@@ -17,6 +17,7 @@
             <th>photo</th>
             <th>published date</th>
             <th>rating</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
             <td>{{res[4]}}</td>
             <td>{{res[5]}}</td>
             <td>{{res[6]}}</td>
+            <td><a href="/delete/article/{{res[0]}}"><i class="fa fa-trash fa-2x text-danger"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
