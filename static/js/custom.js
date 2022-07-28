@@ -202,13 +202,14 @@ $('.register-close').click(function () {
 
 // ------------Login login_modal-----------
 var guide_login_modal = document.getElementById("guide-login-modal");
-var guide_login_btn = document.getElementById("guide-login-btn");
 onload = function () {
     guide_login_modal.style.display = "none";
 }
-guide_login_btn.onclick = function () {
+function guideLoginBtn(){
+    var guide_login_modal = document.getElementById("guide-login-modal");
     guide_login_modal.style.display = "flex";
 }
+
 $('#guide-login-close').click(function () {
     guide_login_modal.style.display = "none";
 })

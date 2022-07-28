@@ -84,7 +84,7 @@ def addPlace():
             # file uploading
             f = request.files['file']
             photo = f.filename
-            if photo is "":
+            if photo == "":
                 photo="defaultplace.jpg"
             else:
                 f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
@@ -168,7 +168,7 @@ def addOffer():
             # file uploading
             f = request.files['file']
             photo = f.filename
-            if photo is "":
+            if photo == "":
                 photo="offerdefault.jpg"
             else:
                 f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
