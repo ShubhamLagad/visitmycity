@@ -20,12 +20,12 @@ with open('./placeTypes.json') as fp:
 
 def currentLocation():
     # manual location 
-    latlng = [18.465171, 73.833144]
-    return latlng
+    # latlng = [18.465171, 73.833144]
+    # return latlng
 
     # automatic location 
-    # g = geocoder.ip('me')
-    # return g.latlng
+    g = geocoder.ip('me')
+    return g.latlng
 
 
 events = event.Event.getAllEvents()
