@@ -7,7 +7,7 @@
 	</a>
 </li>
 <li><a class="login-btn">
-		<button id="login-Btn" class="login-view">
+		<button  onclick="login_Btn()" class="login-view">
 			Login/Sign up
 		</button>
 	</a></li>
@@ -304,7 +304,7 @@
 				</button>
 			</div>
 			<div class="register-text">
-				Don't have an account? <a class="login-close text-success" id="register-Btn"
+				Don't have an account? <a class="login-close text-success" onclick="register_Btn()"
 					style="cursor:pointer;"><strong> Sign up</strong></a>
 			</div>
 		</form>
@@ -371,7 +371,7 @@
 				<input type="text" pattern="*[0-9]" class="form-control" placeholder="Mobile No" name="gmobile"
 					minlength="10" maxlength="10" required>
 				<small class="text-secondary" id="passwarn"></small>
-				<input type="password" class="form-control" placeholder="Password" minlength="4" maxlength="8"
+				<input type="password" class="form-control" placeholder="Password" minlength="8" maxlength="16"
 					name="regPassword" id="gregPassword" onclick="passWarn('gpassalert')" required>
 				<span class="text-danger" id="gpassalert"></span>
 				<input type="password" class="form-control" placeholder="Confirm Password" id="gregCPassword"
@@ -387,8 +387,8 @@
 					<small class="text-warning" style="float: left;">
 						Warning: Please make sure you are at the exact location.
 					</small>
-					<input type="hidden" id="lat2" name="latitude" />
-					<input type="hidden" id="lng2" name="longitude" />
+					<input type="hidden" id="lat2" name="glatitude" />
+					<input type="hidden" id="lng2" name="glongitude" />
 					<div id="locationPicker2" style="border:0; border-radius:10px;width:100%; height:200px">
 						<!-- location picker body  -->
 					</div>

@@ -41,7 +41,6 @@ class Event:
         query = f"select * from event where username='{username}'"
         myCursor.execute(query)
         result = myCursor.fetchall()
-        
         return result
     
    

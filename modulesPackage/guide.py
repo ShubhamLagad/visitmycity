@@ -13,11 +13,11 @@ class Guide:
        
         mydb.commit()
 
-    def getDistanceOfLocation(guideLocation, latlng):
+    def getDistanceOfLocation(guideLocation, newGuideLocation):
 
         # manual current location
-        lat1 = latlng[0]
-        lon1 = latlng[1]
+        lat1 = newGuideLocation[0]
+        lon1 = newGuideLocation[1]
 
         # guide location
         lat2 = float(guideLocation.split(',')[0])
@@ -27,19 +27,35 @@ class Guide:
         coords_2 = (lat2, lon2)
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
         return distance
+    
+    def getNewGuideDistanceOfLocation(guideLocation, newGuideLocation):
 
-    def checkAlreadyExistsGuide(email,glocation):
+
+        # new guide location
+        lat1 = float(newGuideLocation.split(',')[0])
+        lon1 = float(newGuideLocation.split(',')[1])
+        # old guide location
+        lat2 = float(guideLocation.split(',')[0])
+        lon2 = float(guideLocation.split(',')[1])
+
+        coords_1 = (lat1, lon1)
+        coords_2 = (lat2, lon2)
+        distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
+        return distance
+
+    def checkAlreadyExistsGuide(email,newGuideLocation):
         query = f"select glocation,email from guide"
+        myCursor=mydb.cursor()
         myCursor.execute(query)
         result = myCursor.fetchall()
        
         for res in result:
             if res[1]==email:
                 return True
-            elif Guide.getDistanceOfLocation(res[0],glocation)<4:
+            elif Guide.getNewGuideDistanceOfLocation(res[0],newGuideLocation)<4:
                 return True
-            else:
-                return False
+        else:
+            return False
 
     def checkValidGuide(email, password):
         query = f"select * from guide where email='{email}' and password='{password}'"

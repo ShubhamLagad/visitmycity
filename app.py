@@ -34,6 +34,8 @@ allOffersAdverts = advert_offers.OfferAdvert.getAllOffers()
 
 @app.route('/')
 def home():
+    events = event.Event.getAllEvents()
+    localGuide = guide.Guide.getLocalGuide(currentLocation())
     page = "residents/dashboard"
     return render_template("index.html", events=events, page=page,localGuide=localGuide,allOffersAdverts=allOffersAdverts)
 
@@ -118,6 +120,8 @@ def addEvent():
 
             event.Event(username, ename, venue, edate, etime,
                         poster, organizer, elocation)
+            global events
+            events = event.Event.getAllEvents()
             return redirect('/residents/dashboard')
 
         return render_template("residents/addEvent.html", events=events,localGuide=localGuide,username=session['name'])
@@ -160,7 +164,6 @@ def addOffer():
             content=""
             for i in range(1,int(cnt)):
                 contentName = "content"+str(i)
-                print(content)
                 content+=request.form.get(contentName)+","
                 
             olocation = request.form.get('latitude')+","+request.form.get('longitude')
@@ -175,6 +178,7 @@ def addOffer():
                     app.config['OFFER_UPLOAD_FOLDER'], f.filename))
 
             advert_offers.OfferAdvert(username,title,content,photo,olocation)
+            allOffersAdverts = advert_offers.OfferAdvert.getAllOffers()
             return redirect('/residents/dashboard')
 
         return render_template("residents/addAdvertOffer.html",events=events,localGuide=localGuide,username=session['name'])
@@ -273,9 +277,7 @@ def findNearby():
 
 @app.route("/places/<string:placeType>")
 def findPlace(placeType):
-    print(placeType)
     places = place.Place.getPlacesByType(placeType)
-    print(places)
     return render_template("place.html", places=places, events=events,localGuide=localGuide)
 
 
@@ -298,16 +300,16 @@ def addGuide():
         gname = request.form.get('gname')
         gmobile = request.form.get('gmobile')
         gpassword = request.form.get('gCPassword')
-        glocation = request.form.get('latitude')+","+request.form.get('longitude')
-        
-        if guide.Guide.checkAlreadyExistsGuide(email,glocation):
+        newGuidelocation = str(request.form.get('glatitude'))+","+str(request.form.get('glongitude'))
+        if guide.Guide.checkAlreadyExistsGuide(email,newGuidelocation):
             return render_template("index.html",events=events,localGuide=localGuide,guideAccountExistsStatus=True)
         else:
             f = request.files['photo']
             photo = f.filename
             f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                     app.config['GUIDE_UPLOAD_FOLDER'], f.filename))
-            guide.Guide(email, gpassword, gmobile, gname,glocation, photo)
+            guide.Guide(email, gpassword, gmobile, gname,newGuidelocation, photo)
+            localGuide = guide.Guide.getLocalGuide(currentLocation())
             return render_template("index.html",events=events,localGuide=localGuide,registerSuccessStatus=True)
 
 
@@ -378,7 +380,6 @@ def viewAdvtOffer():
     if 'guideusername' in session:
         guideLocation = guide.Guide.getLocation(session['guideusername'])[0][0]
         allAdvtOffer = advert_offers.OfferAdvert.getGuideAdvertOffer(guideLocation)
-        print('dountl : ',allAdvtOffer)
         return render_template('guide/advtOffer.html', allAdvtOffer=allAdvtOffer)
     else:
         return redirect('/') 

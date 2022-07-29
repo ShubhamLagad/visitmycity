@@ -173,11 +173,11 @@ function togglePage() {
 
 // ------------Login login_modal-----------
 var login_modal = document.getElementById("login-modal");
-var login_btn = document.getElementById("login-Btn");
 onload = function () {
     login_modal.style.display = "none";
 }
-login_btn.onclick = function () {
+function login_Btn() {
+    var login_modal = document.getElementById("login-modal");
     login_modal.style.display = "flex";
 }
 $('.login-close').click(function () {
@@ -187,11 +187,11 @@ $('.login-close').click(function () {
 
 // ------------register_modal-----------
 var reg_modal = document.getElementById("register-modal");
-var reg_modal_btn = document.getElementById("register-Btn");
 onload = function () {
     reg_modal.style.display = "none";
 }
-reg_modal_btn.onclick = function () {
+function register_Btn() {
+    var reg_modal = document.getElementById("register-modal");
     reg_modal.style.display = "flex";
 }
 $('.register-close').click(function () {
