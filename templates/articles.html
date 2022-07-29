@@ -1,0 +1,63 @@
+{% extends "template.html" %}
+
+{% block body %}
+<section class="places" id="home">
+    <div class="container">
+        <div class="places-header text-center">
+            <h2 class="page-header">                
+                Articles          
+            </h2>
+        </div>
+        {% if allArticles!=[] %}
+        <div class="container">
+            {% for art in  allArticles %}
+            {% if art[4]!="" and art[5]!="" %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="campaign-timer">
+                        <h3 style="font-weight: 700; font-size:20px;color:#fff;text-shadow:0 0 2px #fff;">{{art[3]}}</h3>
+                        <hr>
+                        {% set artimg = "images/articles/"+art[5] %}
+
+                        <img src="{{ url_for('static',filename=artimg) }}" alt="not found"
+                            style="border-radius:5px;">
+                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="campaign-timer">
+                        <p class="camp">{{art[4]}}</p>
+                        <div class="about-btn text-right">
+                           <strong>- <span class="text-capitalize">{{art[2]}},&nbsp; {{art[6]}}</span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if art[4]=="" and art[5]!="" %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="campaign-timer">
+                        <h3 style="font-weight: 700; font-size:20px;color:#fff;text-shadow:0 0 2px #fff;">{{art[3]}}</h3>
+                        <hr>
+                        {% set artimg = "images/articles/"+art[5] %}
+
+                        <img src="{{ url_for('static',filename=artimg) }}" alt="not found"
+                            style="border-radius:5px;">
+                            <div class="about-btn text-right">
+                                <strong>- <span class="text-capitalize">{{art[2]}},&nbsp; {{art[6]}}</span></strong>
+                             </div>
+                        </div>
+                        
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <h3 class="text-center" style="color:#fff;">No any article</h3>
+        {% endif %}
+       
+    </div>
+</section>
+
+{% endblock %}

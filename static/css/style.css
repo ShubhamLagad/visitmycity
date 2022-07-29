@@ -723,11 +723,12 @@ body {
 /*.item-title*/
 .item-title {
   position: absolute;
-  background: rgba(210, 193, 111, 0.5);
+  background: rgba(210, 193, 111, 0.3);
   bottom: 5%;
-  right: 20px;
+  margin-inline: 10px;
+  width: 95%;
   color: #ffc107;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   font-weight: 600;
   text-shadow: 0 5px 20px rgba(14, 15, 18);
@@ -763,9 +764,11 @@ body {
 .item-title p span {
   padding-right: 10px;
 }
-.filtr-container .filtr-item:hover .item-title,
-.filtr-container .filtr-item:hover .item-title p {
+
+.filtr-container .filtr-item:hover .item-title p{
   color: black;
+}
+.filtr-container .filtr-item:hover .item-title {
   background-color: #fff;
 }
 /*.item-title*/
@@ -1851,12 +1854,13 @@ body {
   margin-block: 10px;
 }
 
+
 .modal-content {
   background-color: #fefefe;
   padding: 20px;
   overflow-y: scroll;
   border: 1px solid #888;
-  height: 350px;
+  height: 450px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.26), 0 26px 52px rgba(0, 0, 0, 0.26);
 }
 .modal .form-control {

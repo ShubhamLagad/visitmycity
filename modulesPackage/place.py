@@ -7,16 +7,13 @@ class Place:
         val = (username,pname,ptype,description,mobileno,photo,plocation)
         myCursor.execute(query,val)
         mydb.commit()
-        print("place insrted")
     
-    # for getting all places information 
     def getAllPlaces():
         query = "select * from place"
         myCursor.execute(query)
         result = myCursor.fetchall()
         return result
     
-    # get residents added places information 
     def getResidentsPlaces(username):
         query = f"select * from place where username='{username}'"
         myCursor.execute(query)

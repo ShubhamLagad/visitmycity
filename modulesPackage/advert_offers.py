@@ -1,26 +1,26 @@
-from modulesPackage.connection import mydb,myCursor
+from modulesPackage.connection import mydb, myCursor
 from math import ceil
 import geopy.distance
 
+
 class OfferAdvert:
-    def __init__(self,username,title,content,image,olocation):
+    def __init__(self, username, title, content, image, olocation):
         query = "insert into advert_offer(username,title,content,image,olocation)values(?,?,?,?,?)"
-        val = (username,title,content,image,olocation)
-        myCursor.execute(query,val)
+        val = (username, title, content, image, olocation)
+        myCursor.execute(query, val)
         mydb.commit()
-        
+
     def getAllResidentOffers(username):
         query = f"select * from advert_offer where username='{username}'"
         myCursor.execute(query)
         result = myCursor.fetchall()
         return result
-    
+
     def deleteAdvtOffer(oano):
         query = f"delete from advert_offer where oano={oano}"
         myCursor.execute(query)
         mydb.commit()
-        
-        
+
     def getDistanceOfLocation(guideLocation, offerLocation):
         # resident location
         lat1 = float(offerLocation.split(',')[0])
@@ -31,23 +31,18 @@ class OfferAdvert:
         coords_1 = (lat1, lon1)
         coords_2 = (lat2, lon2)
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
-        # print("distance is : ", distance)
         return distance
-    
+
     def getGuideAdvertOffer(guideLocation):
-        print(guideLocation)
-        offers=[]
+        offers = []
         query = f"select * from advert_offer"
         myCursor.execute(query)
         result = myCursor.fetchall()
         for res in result:
-            if OfferAdvert.getDistanceOfLocation(guideLocation, res[5])<5:
+            if OfferAdvert.getDistanceOfLocation(guideLocation, res[5]) < 5:
                 offers.append(res)
-        print(offers)
         return offers
-    
-    
-    
+
     def getAllOffers():
         query = f"select * from advert_offer"
         myCursor.execute(query)

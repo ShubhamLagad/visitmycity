@@ -1,3 +1,4 @@
+from flask import session
 from modulesPackage.connection import mydb,myCursor
 import geopy.distance
 from math import ceil
@@ -6,18 +7,22 @@ from math import ceil
 class Guide:
 
     def __init__(self, email, password, gmobile, gname, glocation, photo):
-        # myCursor = mydb.cursor()
         query = 'insert into guide(email,password,mobile,gname,glocation,photo) values(?,?,?,?,?,?)'
         val = (email, password, gmobile, gname, glocation, photo)
         myCursor.execute(query, val)
-       
+        mydb.commit()
+        
+    def updateGuide(email, password, mobile, gname, photo):
+        query = f"update guide set email='{email}',password='{password}',mobile='{mobile}',gname='{gname}',photo='{photo}'"
+        session['guideusername'] = email
+        myCursor = mydb.cursor()
+        myCursor.execute(query)
         mydb.commit()
 
-    def getDistanceOfLocation(guideLocation, newGuideLocation):
-
+    def getDistanceOfLocation(guideLocation, currentLocation):
         # manual current location
-        lat1 = newGuideLocation[0]
-        lon1 = newGuideLocation[1]
+        lat1 = currentLocation[0]
+        lon1 = currentLocation[1]
 
         # guide location
         lat2 = float(guideLocation.split(',')[0])
@@ -28,9 +33,8 @@ class Guide:
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
         return distance
     
+    
     def getNewGuideDistanceOfLocation(guideLocation, newGuideLocation):
-
-
         # new guide location
         lat1 = float(newGuideLocation.split(',')[0])
         lon1 = float(newGuideLocation.split(',')[1])
@@ -43,12 +47,11 @@ class Guide:
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
         return distance
 
+
     def checkAlreadyExistsGuide(email,newGuideLocation):
         query = f"select glocation,email from guide"
-        myCursor=mydb.cursor()
         myCursor.execute(query)
         result = myCursor.fetchall()
-       
         for res in result:
             if res[1]==email:
                 return True
@@ -61,24 +64,22 @@ class Guide:
         query = f"select * from guide where email='{email}' and password='{password}'"
         myCursor.execute(query)
         result = myCursor.fetchall()
-       
         if result == []:
             return False
         else:
             return True
 
+
     def getAllGuides():
         query = "select * from guide"
         myCursor.execute(query)
         result = myCursor.fetchall()
-       
         return result
 
     def getGuide(email):
         query = f"select * from guide where email='{email}'"
         myCursor.execute(query)
         result = myCursor.fetchall()
-       
         return result
 
     def getLocalGuide(latlng):

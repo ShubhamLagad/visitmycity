@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/icon" href="{{url_for('static',filename='logo/favicon.png')}}" />
     <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css')}}" />
     <link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}" />
-    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/hover-min.css')}}"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/hover-min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/datepicker.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}" />
@@ -23,14 +23,13 @@
 </head>
 
 <body>
-    <!-- main-menu Start -->
     <header class="top-area">
         <div class="header-area">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="logo">
-                            <a href="/residents/dashboard">
+                            <a href="#home">
                                 Visit My <span>City</span>
                             </a>
                         </div>
@@ -47,8 +46,6 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="smooth-menu"><a href="#home">Home</a></li>
                                     <li class="smooth-menu"><a href="#contact">Contact </a></li>
-                                    <li class="smooth-menu"><a href="#offers">Offers</a></li>
-                                    <li class="smooth-menu"><a href="#">Help</a></li>
                                     {% block navButton %}{% endblock %}
                                 </ul>
                             </div>
@@ -59,7 +56,8 @@
             </div>
         </div>
     </header>
-    <section class="dashboard">
+
+    <section class="dashboard" id="home">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -92,7 +90,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- footer-copyright start -->
     <section id="contact">
@@ -171,7 +168,6 @@
     </section>
     <!-- footer-copyright end -->
 
-
     <script src="{{url_for('static',filename='js/jquery.js')}}"></script>
     <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/bootsnav.js')}}"></script>
@@ -184,7 +180,6 @@
     <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
     <script src="{{url_for('static',filename='js/custom.js')}}"></script>
     <script src="{{url_for('static',filename='js/validation.js')}}"></script>
-    <script src="{{url_for('static',filename='js/location.js')}}"></script>
     <script src="{{url_for('static',filename='js/locationPicker.js')}}"></script>
     <script src="{{url_for('static',filename='js/isotope.js')}}"></script>
     <script src="{{url_for('static',filename='js/imagesloaded.min.js')}}"></script>

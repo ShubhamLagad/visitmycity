@@ -33,10 +33,16 @@
             {% set imgname ="images/places/"+res[6] %}
             <td><img src="{{ url_for('static',filename=imgname) }}" alt="" srcset="" width="100px" height="100px"></td>
             {% set url ="http://maps.google.de/maps?q=loc:"+res[7] %}
-            <td><button class="btn btn-info text-uppercase"><a style="font-weight: 600;color:#fff;" href="{{url}}"
-                        target="_blank">get direction <i class="fa fa-location-arrow"></i></a> </button></td>
-                        <td><a href="/delete/place/{{res[0]}}"><i class="fa fa-trash fa-2x text-danger"></i></a></td>
-            <!-- http://maps.google.de/maps?q=loc:18.4656449,73.8335291 -->
+            <td>
+                <button class="btn btn-info text-uppercase">
+                    <a style="font-weight: 600;color:#fff;" href="{{url}}" target="_blank">get direction <i
+                            class="fa fa-location-arrow"></i></a>
+                </button>
+            </td>
+            <td>
+                <a href="/delete/place/{{res[0]}}" onclick="return confirm('Are you sure you want to delete?');"><i
+                        class="fa fa-trash fa-2x text-danger"></i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

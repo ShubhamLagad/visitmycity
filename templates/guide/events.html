@@ -19,6 +19,7 @@
             <th>time</th>
             <th>poster</th>
             <th>location</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +37,10 @@
 
             {% set url ="http://maps.google.de/maps?q=loc:"+res[8] %}
             <td><button class="btn btn-info text-uppercase"><a style="font-weight: 600;color:#fff;"   href="{{url}}" target="_blank">get direction <i class="fa fa-location-arrow"></i></a> </button></td>
+            <td>
+                <a href="/delete/event/{{res[2]}}" onclick="return confirm('Are you sure you want to delete?');"><i
+                        class="fa fa-trash fa-2x text-danger"></i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

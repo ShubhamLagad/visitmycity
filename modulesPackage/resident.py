@@ -74,6 +74,7 @@ class Resident:
 
         return count
 
+
     def getName(email):
         query = f"select name from resident where email='{email}'"
         myCursor.execute(query)
@@ -97,11 +98,9 @@ class Resident:
         coords_1 = (lat1, lon1)
         coords_2 = (lat2, lon2)
         distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
-        # print("distance is : ", distance)
         return distance
     
     def getGuideResident(guideLocation):
-        print(guideLocation)
         residents=[]
         query = f"select * from resident"
         myCursor.execute(query)
@@ -117,4 +116,3 @@ class Feedback:
         val = (username, email, comment)
         myCursor.execute(query, val)
         mydb.commit()
-        print("feedback insert")

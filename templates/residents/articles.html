@@ -9,6 +9,7 @@
             <th>article_content</th>
             <th>photo</th>
             <th>published date</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,10 @@
             <td>{{res[3]}}</td>
             <td>{{res[4]}}</td>
             <td>{{res[5]}}</td>
+            <td>
+                <a href="/delete/article/{{res[0]}}" onclick="return confirm('Are you sure you want to delete?');"><i
+                        class="fa fa-trash fa-2x text-danger"></i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

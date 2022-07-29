@@ -157,8 +157,6 @@ $(document).ready(function () {
 
 
 
-
-
 function togglePage() {
     var page1 = document.getElementById('firstpage')
     var page2 = document.getElementById('secondpage')
@@ -172,55 +170,39 @@ function togglePage() {
 
 
 // ------------Login login_modal-----------
-var login_modal = document.getElementById("login-modal");
-onload = function () {
-    login_modal.style.display = "none";
-}
 function login_Btn() {
     var login_modal = document.getElementById("login-modal");
     login_modal.style.display = "flex";
 }
 $('.login-close').click(function () {
+    var login_modal = document.getElementById("login-modal");
     login_modal.style.display = "none";
 })
 
 
 // ------------register_modal-----------
-var reg_modal = document.getElementById("register-modal");
-onload = function () {
-    reg_modal.style.display = "none";
-}
 function register_Btn() {
     var reg_modal = document.getElementById("register-modal");
     reg_modal.style.display = "flex";
 }
 $('.register-close').click(function () {
+    var reg_modal = document.getElementById("register-modal");
     reg_modal.style.display = "none";
 })
 
 
-
 // ------------Login login_modal-----------
-var guide_login_modal = document.getElementById("guide-login-modal");
-onload = function () {
-    guide_login_modal.style.display = "none";
-}
 function guideLoginBtn(){
     var guide_login_modal = document.getElementById("guide-login-modal");
     guide_login_modal.style.display = "flex";
 }
-
 $('#guide-login-close').click(function () {
+    var guide_login_modal = document.getElementById("guide-login-modal");
     guide_login_modal.style.display = "none";
 })
 
 
 
-
-onload = function () {
-    var guide_reg_modal = document.getElementById("guide-register-modal");
-    guide_reg_modal.style.display = "none";
-}
 function guide_reg_btn() {
     var guide_reg_modal = document.getElementById("guide-register-modal");
     guide_reg_modal.style.display = "flex";
@@ -230,29 +212,18 @@ function guide_register_close() {
     guide_reg_modal.style.display = "none";
 }
 
-
-
-
 // ------------Login login_modal-----------
-var admin_login_modal = document.getElementById("admin-login-modal");
-// var guide_login_btn = document.getElementById("admin-login-btn");
-onload = function () {
-    admin_login_modal.style.display = "none";
-}
 $('#admin-login-btn').click(function () {
+    var admin_login_modal = document.getElementById("admin-login-modal");
     admin_login_modal.style.display = "flex";
 })
 $('#admin-login-close').click(function () {
+    var admin_login_modal = document.getElementById("admin-login-modal");
     admin_login_modal.style.display = "none";
 })
 
 
-
-onload = function () {
-    var admin_reg_modal = document.getElementById("admin-login-modal");
-    admin_reg_modal.style.display = "none";
-}
-function admin_reg_btn() {
+function admin_login_btn() {
     var admin_reg_modal = document.getElementById("admin-login-modal");
     admin_reg_modal.style.display = "flex";
 }

@@ -1,3 +1,4 @@
+from sqlite3 import Cursor
 from modulesPackage.connection import myCursor
 
 
@@ -76,5 +77,4 @@ class Admin:
         myCursor.execute(query)
         result = myCursor.fetchall()
         count['offers'] = result[0][0]
-
         return count

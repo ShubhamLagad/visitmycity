@@ -7,7 +7,7 @@
 	</a>
 </li>
 <li><a class="login-btn">
-		<button  onclick="login_Btn()" class="login-view">
+		<button onclick="login_Btn()" class="login-view">
 			Login/Sign up
 		</button>
 	</a></li>
@@ -46,6 +46,7 @@
 {% if loginStatus %}
 <script>
 	alert("Login Failed!\nUsername and password are incorrect?")
+	window.location.href = "/";
 </script>
 {% endif %}
 
@@ -258,7 +259,7 @@
 				<div class="col-sm-6 col-md-6 text-center"
 					style="padding: 50px; border:1px solid black; border-radius:5px; box-shadow:0 0 5px black;">
 					<h1>
-					 <i class="fa fa-newspaper-o"></i>	Let! Add an Article.
+						<i class="fa fa-newspaper-o"></i> Let! Add an Article.
 					</h1>
 					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
 					<p> You can able to add information of your city through an articles.</p>
@@ -271,7 +272,7 @@
 				<div class="col-sm-6 col-md-6 text-center"
 					style="padding: 50px; border:1px solid black; border-radius:5px; box-shadow:0 0 5px black;">
 					<h1>
-					 <i class="fa fa-calendar"></i>	Let! Add an event.
+						<i class="fa fa-calendar"></i> Let! Add an event.
 					</h1>
 					<hr style="height: 1px; background:black; box-shadow:0 1px 2px black;">
 					<p> Add your events and invite your nearby people.</p>
@@ -288,32 +289,71 @@
 </section>
 <!--service end-->
 
-
-<!-- ---------------resident Login Modal start----------------------->
+<!----==============resident Login Modal start===================--->
 <div id="login-modal" class="modal">
 	<div class="modal-content">
 		<span id="login-close" class="close login-close">&times;</span>
-		<h2>Login</h2>
-		<hr>
-		<form action="/residents/dashboard" method="post">
-			<input type="email" class="form-control" placeholder="Username" name="username">
-			<input type="password" class="form-control" placeholder="Password" name="loginpassword">
-			<div class="about-btn">
-				<button type="submit" class="about-view user-articles-btn">
-					Login
-				</button>
+		<div class="text-center">
+			<h4 >Welcome back!</h4>
+			<small>Login to continue....</small>
+		</div>
+		<script>
+			function togglePage() {
+				var page1 = document.getElementById('firstpage')
+				var page2 = document.getElementById('secondpage')
+				var page2 = document.getElementById('toggleBtn')
+			
+				let temp = page1.style.display;
+				page1.style.display = page2.style.display;
+				page2.style.display = temp;
+			}
+		</script>
+		<div class="row">
+			<div class="col-sm-6" style="margin-block: 10px;">
+			  <button style="width: 100%;font-weight:600;" id="toggleBtn" onclick="togglePage()" class="btn"> Resident <i class="fa fa-sign-in"></i> </button>
 			</div>
-			<div class="register-text">
-				Don't have an account? <a class="login-close text-success" onclick="register_Btn()"
-					style="cursor:pointer;"><strong> Sign up</strong></a>
+			<div class="col-sm-6" style="margin-block: 10px;">
+			  <button style="width: 100%;font-weight:600;" onclick="togglePage()" class="btn">Guide <i class="fa fa-sign-in"></i> </button>
 			</div>
-		</form>
+		  </div>
+
+		<div id="firstpage" style="border: 1px solid #000;border-radius:5px;padding:10px;box-shadow:0 0 1px #000;margin-top:20px;">
+			<div class="text-center">
+				<strong>Resident Login</strong>
+			</div>
+			<form action="/residents/dashboard" method="post">
+				<input type="email" class="form-control" placeholder="Username/email" name="username">
+				<input type="password" class="form-control" placeholder="Password" name="loginpassword">
+				<div class="about-btn">
+					<button type="submit" class="about-view user-articles-btn">
+						Login
+					</button>
+				</div>
+				<div class="register-text">
+					Don't have an account? <a class="login-close text-success" onclick="register_Btn()"
+						style="cursor:pointer;"><strong> Sign up</strong></a>
+				</div>
+			</form>
+		</div>
+		<div id="secondpage" style="display: none;border: 1px solid #000;border-radius:5px;padding:10px;box-shadow:0 0 1px #000;margin-top:20px;">
+			<div class="text-center">
+				<strong>Guide Login</strong>
+			</div>
+			<form action="/guide/dashboard" method="post">
+				<input type="email" class="form-control" placeholder="Username/email" name="guideUsername">
+				<input type="password" class="form-control" placeholder="Password" name="guidePassword">
+				<div class="about-btn">
+					<button type="submit" class="about-view user-articles-btn">
+						Login
+					</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
-<!-- ---------------resident Login Modal end------------------------>
+<!----==============resident Login Modal end===================---->
 
-
-<!-- ---------------Register Modal start------------------->
+<!----==============Register Modal start------------------->
 <div id="register-modal" class="modal">
 	<div class="modal-content">
 		<span id="register-close" class="close register-close">&times;</span>
@@ -356,9 +396,9 @@
 		</div>
 	</div>
 </div>
-<!-----------------register Modal end------------------------>
+<!-----------------register Modal end===================---->
 
-<!-- ---------------Guide Register Modal start------------------->
+<!----==============Guide Register Modal start------------------->
 <div id="guide-register-modal" class="modal">
 	<div class="modal-content">
 		<span id="guide-register-close" onclick="guide_register_close()" class="close">&times;</span>
@@ -402,9 +442,9 @@
 		</div>
 	</div>
 </div>
-<!-----------------Guide register Modal end------------------------>
+<!-----------------Guide register Modal end===================---->
 
-<!-- ---------------Guide Login Modal start----------------------->
+<!----==============Guide Login Modal start===================--->
 <div id="guide-login-modal" class="modal">
 	<div class="modal-content">
 		<span id="guide-login-close" class="close login-close">&times;</span>
@@ -421,10 +461,10 @@
 		</form>
 	</div>
 </div>
-<!-- ---------------Guide Login Modal end------------------------>
+<!----==============Guide Login Modal end===================---->
 
 
-<!-- ---------------Admin Login Modal end------------------------>
+<!----==============Admin Login Modal end===================---->
 <div id="admin-login-modal" class="modal" style="display: none;">
 	<div class="modal-content">
 		<span id="admin-login-close" onclick="admin_login_close()" class="close login-close">&times;</span>
@@ -441,7 +481,7 @@
 		</form>
 	</div>
 </div>
-<!-- ---------------admin Login Modal end------------------------>
+<!----==============admin Login Modal end===================---->
 
 
 {% if login %}

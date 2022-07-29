@@ -2,7 +2,6 @@
 <html class="no-js" lang="en">
 
 <head>
-    <!-- META DATA -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +9,7 @@
     <link rel="shortcut icon" type="image/icon" href="{{url_for('static',filename='logo/favicon.png')}}" />
     <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css')}}" />
     <link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}" />
-    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/hover-min.css')}}"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/hover-min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/datepicker.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}" />
@@ -48,12 +47,11 @@
                             </div>
                             <div class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav navbar-right">
-
                                     {% block navUser %}{% endblock %}
                                     <li class="smooth-menu"><a href="#home">Home</a></li>
                                     <li class="smooth-menu"><a href="#contact">Contact </a></li>
+                                    <li class="smooth-menu"><a href="#services">Services </a></li>
                                     <li class="smooth-menu"><a href="#offers">Offers</a></li>
-                                    <li class="smooth-menu"><a href="#">Help</a></li>
                                     {% block navButton %}{% endblock %}
                                 </ul>
                             </div>
@@ -75,7 +73,7 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="page-header" style="color:rgb(75, 75, 118) ;">
-                    Your Nearby Offers
+                    Your Nearby Offers / Advertisement
                 </h2>
             </div>
             <div class="owl-carousel owl-theme" id="users-offers-carousel">
@@ -134,6 +132,8 @@
     </section>
     <!-- offers End -->
 
+
+    <!-- events start -->
     <section id="gallery" class="gallery">
         <div class="container">
             <div class="gallery-details">
@@ -147,14 +147,19 @@
                         <div class="filtr-container">
                             <div class="row">
                                 {% for event in events %}
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="filtr-item">
                                         <img src="{{ url_for('static',filename='images/events/'+event[6]) }}"
                                             alt="portfolio image" />
-                                        <div class="item-title">
-                                            <p>{{event[2]}}</p>
-                                            <p><span>{{event[5]}}</span><span>{{event[4]}}</span></p>
-                                            <p><small>Venue : {{event[3]}}</small></p>
+                                        <div class="item-title row">
+                                            <div class="col-sm-10">
+                                                <p>{{event[2]}}</p>
+                                                <p><span>{{event[5]}}</span><span>{{event[4]}}</span></p>
+                                                <p><small>Venue : {{event[3]}}</small></p>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href=""> <i class="fa fa-map-marker" ></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -166,6 +171,7 @@
             </div>
         </div>
     </section>
+ <!-- events end -->
 
     <!--user-articles start-->
     <section class="user-articles">
@@ -173,34 +179,36 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="user-articles-content text-center">
-                        <h2 class="page-header" style="color:rgb(37, 51, 99) ;">We are in Pune Now!</h2>
+                        <h2 class="page-header" style="color:rgb(37, 51, 99) ;">Artciles / News of your area</h2>
+                        {% if oneArticles=='' %}
+                        <h3>No any article</h3>
+                        {% else %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="campaign-timer">
-                                    <!-- <img src="../static/images/places/Shaniwar-wada.jpg" alt=""
-                                        style="border-radius:5px;"> -->
+                                        
+                                    <h3 style="font-weight: 700; font-size:20px;color:#fff;text-shadow:0 0 2px #fff;">{{oneArticles[3]}}</h3>
+                                    <hr>
+                                    {% set artimg = "images/articles/"+oneArticles[5] %}
+
+                                    <img src="{{ url_for('static',filename=artimg) }}" alt="not found"
+                                        style="border-radius:5px;">
                                     </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="campaign-timer">
-                                    <p class="camp">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-                                        tempora maiores necessitatibus eius porro ut consequuntur, assumenda hic
-                                        voluptates. Reiciendis voluptatem, corrupti ipsum illum vitae nam nobis
-                                        explicabo provident culpa nihil animi placeat, aut necessitatibus, ab adipisci
-                                        similique nesciunt alias. Obcaecati vitae ducimus ab eum, labore in porro fugit
-                                        a, voluptatibus non omnis odit ipsam natus. Ea dicta rem nobis illo voluptas
-                                        iusto aut, vero alias, aspernatur ipsam amet accusamus officiis reiciendis
-                                        dignissimos veniam dolor enim deleniti odit quos vitae eaque tempore, laudantium
-                                        magnam? Aut amet vel itaque aperiam deleniti! Iusto veritatis, nihil expedita
-                                        non laudantium fuga natus quaerat ad?</p>
+                                    <p class="camp">{{oneArticles[4]}}</p>
                                     <div class="about-btn">
                                         <button class="about-view user-articles-btn">
+                                            <a href="/articles">
                                             Read more &nbsp;<i class="fa fa-arrow-circle-o-right"> </i>
+                                        </a>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -208,131 +216,8 @@
     </section>
     <!--user-articles end-->
 
-
-    <!-- feedback Start -->
-    <section class="user-feedback">
-        <div class="container">
-            <div class="gallary-header text-center">
-                <h2>
-                    What Says Our Customers
-                </h2>
-                <p>
-                    Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla.
-                </p>
-            </div>
-            <div class="owl-carousel owl-theme" id="user-feedback-carousel">
-                <div class="home1-testm item">
-                    <div class="home1-testm-single text-center">
-                        <div class="home1-testm-img">
-                        </div>
-                        <div class="home1-testm-txt">
-                            <span class="icon section-icon">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </span>
-                            <p>
-                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
-                            </p>
-                            <h3>
-                                <a href="#">
-                                    kevin watson
-                                </a>
-                            </h3>
-                            <h4>london, england</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="home1-testm item">
-                    <div class="home1-testm-single text-center">
-                        <div class="home1-testm-img">
-                        </div>
-                        <div class="home1-testm-txt">
-                            <span class="icon section-icon">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </span>
-                            <p>
-                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
-                            </p>
-                            <h3>
-                                <a href="#">
-                                    kevin watson
-                                </a>
-                            </h3>
-                            <h4>london, england</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="home1-testm item">
-                    <div class="home1-testm-single text-center">
-                        <div class="home1-testm-img">
-                        </div>
-                        <div class="home1-testm-txt">
-                            <span class="icon section-icon">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </span>
-                            <p>
-                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
-                            </p>
-                            <h3>
-                                <a href="#">
-                                    kevin watson
-                                </a>
-                            </h3>
-                            <h4>london, england</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="home1-testm item">
-                    <div class="home1-testm-single text-center">
-                        <div class="home1-testm-img">
-                        </div>
-                        <div class="home1-testm-txt">
-                            <span class="icon section-icon">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </span>
-                            <p>
-                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
-                            </p>
-                            <h3>
-                                <a href="#">
-                                    kevin watson
-                                </a>
-                            </h3>
-                            <h4>london, england</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="home1-testm item">
-                    <div class="home1-testm-single text-center">
-                        <div class="home1-testm-img">
-                        </div>
-                        <div class="home1-testm-txt">
-                            <span class="icon section-icon">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </span>
-                            <p>
-                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam.
-                            </p>
-                            <h3>
-                                <a href="#">
-                                    kevin watson
-                                </a>
-                            </h3>
-                            <h4>london, england</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- feedback End -->
-
     <!--local guide start-->
-    <section class="service">
+    <section class="service" id="services">
         <div class="container">
             <div class="service-counter text-center">
                 <div class="col-md-8">
@@ -478,12 +363,12 @@
                 <hr>
                 <div class="foot-icons ">
                     <ul class="footer-social-links list-inline list-unstyled">
-                        <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-github"></i></a></li>
+                        <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#" target="_blank" class="foot-icon-bg-4"><i class="fa fa-whatsapp"></i></a></li>
                     </ul>
-                    <p>&copy; 2022 <a onclick="admin_reg_btn()">VisitMyCity</a>. All Right Reserved</p>
+                    <p>&copy; 2022 <a onclick="admin_login_btn()">VisitMyCity</a>. All Right Reserved</p>
                 </div>
                 <div id="scroll-Top">
                     <i class="fa fa-angle-double-up return-to-top" id="scroll-top" data-toggle="tooltip"
@@ -493,11 +378,10 @@
         </footer>
     </section>
     <!-- footer-copyright end -->
-    <!-- <script src="{{url_for('static',filename='js/locationpicker.jquery.js')}}"></script> -->
+
     <script src="{{url_for('static',filename='js/locationjquery.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/locationPicker.js')}}"></script>
     <script src="{{url_for('static',filename='js/jquery.js')}}"></script>
-
     <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/bootsnav.js')}}"></script>
     <script src="{{url_for('static',filename='js/jquery.filterizr.min.js')}}"></script>
@@ -509,7 +393,6 @@
     <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
     <script src="{{url_for('static',filename='js/custom.js')}}"></script>
     <script src="{{url_for('static',filename='js/validation.js')}}"></script>
-    <script src="{{url_for('static',filename='js/location.js')}}"></script>
     <script src="{{url_for('static',filename='js/isotope.js')}}"></script>
     <script src="{{url_for('static',filename='js/imagesloaded.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/nivo-lightbox.min.js')}}"></script>
