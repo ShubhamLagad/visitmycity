@@ -15,7 +15,6 @@ app.config['OFFER_UPLOAD_FOLDER'] = 'static/images/offers'
 with open('./placeTypes.json') as fp:
     placeTypes = json.load(fp)["placeTypes"]
 
-
 def currentLocation():
     # manual location
     # latlng = [18.465171, 73.833144]
@@ -301,7 +300,16 @@ def articles():
 @app.route("/places/<string:placeType>")
 def findPlace(placeType):
     places = place.Place.getPlacesByType(placeType)
-    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts)
+    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts,placeType=placeType,distance=0)
+
+
+@app.route("/serachAround/<string:placeType>",methods=['POST','GET'])
+def serachAround(placeType):
+    if request.method=='POST':
+        distance = request.form.get('distance')
+        
+    places = place.Place.getPlacesByDistance(distance,placeType,currentLocation())
+    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts,placeType=placeType,distance=int(distance))
 
 
 @app.route('/feedback', methods=['POST', 'GET'])
@@ -539,12 +547,36 @@ def deleteArticle(ano):
         article.Article.deleteArticle(ano)
     return redirect('/admin/articles')
 
+@app.route('/guide/delete/article/<string:ano>', methods=['GET'])
+def deleteArticleGuide(ano):
+    if 'guideusername' in session:
+        article.Article.deleteArticle(ano)
+    return redirect('/guide/articles')
+
+@app.route('/resident/delete/article/<string:ano>', methods=['GET'])
+def deleteArticleResident(ano):
+    if 'username' in session:
+        article.Article.deleteArticle(ano)
+    return redirect('/residents/articles')
+
 
 @app.route('/delete/event/<string:eno>', methods=['GET'])
 def deleteEvent(eno):
     if 'adminusername' in session:
         event.Event.deleteEvent(eno)
     return redirect('/admin/events')
+
+@app.route('/guide/delete/event/<string:eno>', methods=['GET'])
+def deleteEventGuide(eno):
+    if 'guideusername' in session:
+        event.Event.deleteEvent(eno)
+    return redirect('/guide/events')
+
+@app.route('/resident/delete/event/<string:eno>', methods=['GET'])
+def deleteEventResident(eno):
+    if 'username' in session:
+        event.Event.deleteEvent(eno)
+    return redirect('/residents/events')
 
 
 @app.route('/delete/place/<string:pno>', methods=['GET'])
@@ -553,12 +585,36 @@ def deletePlace(pno):
         place.Place.deletePlace(pno)
     return redirect('/admin/places')
 
+@app.route('/guide/delete/place/<string:pno>', methods=['GET'])
+def deletePlaceGuide(pno):
+    if 'guideusername' in session:
+        place.Place.deletePlace(pno)
+    return redirect('/guide/places')
+
+@app.route('/resident/delete/place/<string:pno>', methods=['GET'])
+def deletePlaceResident(pno):
+    if 'username' in session:
+        place.Place.deletePlace(pno)
+    return redirect('/residents/places')
+
 
 @app.route('/delete/advtoffer/<string:oano>', methods=['GET'])
 def deleteOffers(oano):
-    if 'adminusername' in session:
+    if 'username' in session:
         advert_offers.OfferAdvert.deleteAdvtOffer(oano)
     return redirect('/admin/advtOffer')
+
+@app.route('/guide/delete/advtoffer/<string:oano>', methods=['GET'])
+def deleteOffersGuide(oano):
+    if 'guideusername' in session:
+        advert_offers.OfferAdvert.deleteAdvtOffer(oano)
+    return redirect('/guide/advtOffer')
+
+@app.route('/resident/delete/advtoffer/<string:oano>', methods=['GET'])
+def deleteOffersResident(oano):
+    if 'username' in session:
+        advert_offers.OfferAdvert.deleteAdvtOffer(oano)
+    return redirect('/residents/advtOffer')
 
 
 @app.route('/logout')

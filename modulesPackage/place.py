@@ -55,3 +55,29 @@ class Place:
             if Place.getDistanceOfLocation(guideLocation, res[7])<3:
                 places.append(res)
         return places
+    
+    
+    
+    def getDistanceOfPlace(currentLocation, placeLocation):
+        # current location
+        lat1 = currentLocation[0]
+        lon1 = currentLocation[1]
+        # place location
+        lat2 = float(placeLocation.split(',')[0])
+        lon2 = float(placeLocation.split(',')[1])
+        coords_1 = (lat1, lon1)
+        coords_2 = (lat2, lon2)
+        distance = ceil(geopy.distance.geodesic(coords_1, coords_2).km)
+        return distance
+    
+    
+    def getPlacesByDistance(distance,placeType,currentLocation):
+        places=[]
+        query = f"select * from place where type='{placeType}'"
+        myCursor.execute(query)
+        result = myCursor.fetchall()
+        for res in result:
+            if Place.getDistanceOfPlace(currentLocation, res[7])<int(distance):
+                places.append(res)
+        return places
+    

@@ -82,13 +82,19 @@
                 <div class="home-testm-single">
                     <div class="home-testm-txt">
                         <div class="row">
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-5 text-center">
                                 <div class="home-testm-img">
                                     {% set offimg = "images/offers/"+off_res[4] %}
-                                    <img src="{{url_for('static',filename=offimg)}}" alt="img" />
+                                    <img src="{{url_for('static',filename=offimg)}}" alt="img" height="100%" width="100%" />
+                                </div>
+                                {% set latlog = off_res[5].split(',') %}
+                                <div class="about-btn">
+                                    <button class="about-view user-articles-btn">
+                                        <a href="http://maps.google.de/maps?q=loc:{{latlog[0]}},{{latlog[1]}}" target="_blank"> Get Direction &nbsp;<i class="fa fa-location-arrow" ></i></a>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <h3>
                                     {{off_res[2]}}
                                 </h3>
@@ -100,13 +106,6 @@
                                         {% endif %}
                                 </h4>
                                 {% endfor %}
-                            </div>
-                            <div class="col-md-12">
-                                <div class="about-btn">
-                                    <button class="about-view user-articles-btn">
-                                        Get Direction &nbsp;<i class="fa fa-location-arrow"></i>
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,7 +133,7 @@
 
 
     <!-- events start -->
-    <section id="gallery" class="gallery">
+    <section id="gallery" class="events">
         <div class="container">
             <div class="gallery-details">
                 <div class=" text-center">
@@ -158,7 +157,8 @@
                                                 <p><small>Venue : {{event[3]}}</small></p>
                                             </div>
                                             <div class="col-sm-2">
-                                                <a href=""> <i class="fa fa-map-marker" ></i></a>
+                                                {% set latlog = event[8].split(',') %}
+                                                <a href="http://maps.google.de/maps?q=loc:{{latlog[0]}},{{latlog[1]}}" target="_blank"> <i class="fa fa-map-marker" ></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -172,6 +172,7 @@
         </div>
     </section>
  <!-- events end -->
+
 
     <!--user-articles start-->
     <section class="user-articles">
@@ -216,8 +217,9 @@
     </section>
     <!--user-articles end-->
 
+   
     <!--local guide start-->
-    <section class="service" id="services">
+    <section class="service" id="guide">
         <div class="container">
             <div class="service-counter text-center">
                 <div class="col-md-8">

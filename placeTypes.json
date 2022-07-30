@@ -18,9 +18,11 @@
         "hostel",
         "daily_needs",
         "cafe",
-        "hill station",
+        "hill_station",
         "college",
         "waterpark",
-        "lounge"
+        "lounge",
+        "wealth_management",
+        "college"
     ]
 }
