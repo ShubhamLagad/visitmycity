@@ -32,13 +32,11 @@
             <td>{{res[5]}}</td>
             {% set imgname ="images/places/"+res[6] %}
             <td><img src="{{ url_for('static',filename=imgname) }}" alt="" srcset="" width="100px" height="100px"></td>
-            {% set url ="http://maps.google.de/maps?q=loc:"+res[7] %}
-            <td>
-                <button class="btn btn-info text-uppercase">
-                    <a style="font-weight: 600;color:#fff;" href="{{url}}" target="_blank">get direction <i
-                            class="fa fa-location-arrow"></i></a>
-                </button>
-            </td>
+            {% set LatLon =res[7].split(',') %}
+            <td><iframe
+                    src="https://maps.google.com/maps?q={{LatLon[0]}},{{LatLon[1]}}&hl=es;z=17&amp&output=embed"
+                    width="300px" height="200px" style="border-radius:5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></td>
             <td>
                 <a href="/delete/place/{{res[0]}}" onclick="return confirm('Are you sure you want to delete?');"><i
                         class="fa fa-trash fa-2x text-danger"></i></a>

@@ -19,7 +19,17 @@
         <tr>
             <td>{{loop.index}}</td>
             <td>{{res[2]}}</td>
-            <td>{{res[3]}}</td>
+            <!-- <td>{{res[3]}}</td> -->
+            <td>
+                <ol>
+                    {% set typeList = res[3].split(',') %}
+                    {% for item in typeList %}
+                    {% if loop.index < typeList|length %}
+                    <li>{{item}}</li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+            </td>
             <td>{{res[4]}}</td>
             <td>{{res[5]}}</td>
             {% set imgname ="images/places/"+res[6] %}

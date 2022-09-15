@@ -3,7 +3,7 @@ from math import ceil
 import geopy.distance
 class Place:
     def __init__(self,username,pname,ptype,description,mobileno,photo,plocation):
-        query = "insert into place(username,pname,type,description,mobileno,photos,plocation) values(?,?,?,?,?,?,?)"
+        query = "insert into place(username,pname,type,description,mobileno,photos,plocation) values(%s,%s,%s,%s,%s,%s,%s)"
         val = (username,pname,ptype,description,mobileno,photo,plocation)
         myCursor.execute(query,val)
         mydb.commit()
@@ -22,10 +22,15 @@ class Place:
     
     
     def getPlacesByType(ptype):
-        query = f"select * from place where type='{ptype}'"
+        query = "select * from place"
         myCursor.execute(query)
         result = myCursor.fetchall()
-        return result
+        placeList = []
+        for res in result:
+            typeList = res[3].split(',')
+            if ptype in typeList:
+                placeList.append(res)
+        return placeList
     
     
     def deletePlace(pno):
@@ -73,11 +78,13 @@ class Place:
     
     def getPlacesByDistance(distance,placeType,currentLocation):
         places=[]
-        query = f"select * from place where type='{placeType}'"
+        query = "select * from place"
         myCursor.execute(query)
         result = myCursor.fetchall()
         for res in result:
-            if Place.getDistanceOfPlace(currentLocation, res[7])<int(distance):
-                places.append(res)
+            typeList = res[3].split(',')
+            if placeType in typeList:
+                if Place.getDistanceOfPlace(currentLocation, res[7])<int(distance):
+                    places.append(res)
         return places
     

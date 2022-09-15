@@ -15,9 +15,12 @@ app.config['OFFER_UPLOAD_FOLDER'] = 'static/images/offers'
 with open('./placeTypes.json') as fp:
     placeTypes = json.load(fp)["placeTypes"]
 
+
 def currentLocation():
     # manual location
     # latlng = [18.465171, 73.833144]
+    # latlng = [18.46513270420872, 73.83549824465783] #SIOM
+    # latlng = [18.51603597319748, 73.85302434055981] #Main Pune
     # return latlng
 
     # automatic location
@@ -33,8 +36,6 @@ oneArticles = article.Article.getOneArticle()
 
 @app.route('/')
 def home():
-    oneArticles = article.Article.getOneArticle()
-    events = event.Event.getAllEvents()
     localGuide = guide.Guide.getLocalGuide(currentLocation())
     page = "residents/dashboard"
     return render_template("index.html", events=events, page=page, localGuide=localGuide, allOffersAdverts=allOffersAdverts, oneArticles=oneArticles)
@@ -82,12 +83,15 @@ def addPlace():
         if request.method == 'POST':
             username = session['username']
             pname = request.form.get('pname')
-            ptype = request.form.get('ptype')
+            ptype = request.form.getlist('ptype[]')
             description = request.form.get('description')
             mobileno = request.form.get('mobileno')
             plocation = request.form.get(
                 'latitude')+","+request.form.get('longitude')
-
+            print(ptype)
+            newPtype = ""
+            for typ in ptype:
+                newPtype+=typ+","
             # file uploading
             f = request.files['file']
             photo = f.filename
@@ -96,7 +100,7 @@ def addPlace():
             else:
                 f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                     app.config['PLACE_UPLOAD_FOLDER'], f.filename))
-            place.Place(username, pname, ptype, description,
+            place.Place(username, pname, newPtype, description,
                         mobileno, photo, plocation)
             return redirect('/residents/dashboard')
 
@@ -121,13 +125,15 @@ def addEvent():
             # file uploading
             f = request.files['file']
             poster = f.filename
-            f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                   app.config['EVENT_UPLOAD_FOLDER'], f.filename))
+            if poster == "":
+                poster = "default event.jpg"
+            else:
 
-            event.Event(username, ename, venue, edate, etime,
-                        poster, organizer, elocation)
-            global events
-            events = event.Event.getAllEvents()
+                f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                    app.config['EVENT_UPLOAD_FOLDER'], f.filename))
+
+                event.Event(username, ename, venue, edate,
+                            etime, poster, organizer, elocation)
             return redirect('/residents/dashboard')
 
         return render_template("residents/addEvent.html", events=events, localGuide=localGuide, username=session['name'], oneArticles=oneArticles, allOffersAdverts=allOffersAdverts)
@@ -221,6 +227,16 @@ def addAdvertisement():
     return render_template('index.html', page="addAdvertOffer", login=True, events=events, localGuide=localGuide,  oneArticles=oneArticles, allOffersAdverts=allOffersAdverts)
 
 
+@app.route('/residents/resetPassword', methods=['POST', 'GET'])
+def resetPassword():
+    if request.method=='POST':
+        email = request.form.get('useremail')
+        password = request.form.get('cforgetpassword')
+        if resident.Resident.resetPassword(email,password):
+            return render_template("index.html", passwordResetSuccess=True, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts)
+        else:
+            return render_template("index.html", passwordResetFailed=True, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts)
+
 @app.route('/residents/dashboard', methods=['POST', 'GET'])
 def residentsDashboard():
     if 'username' in session:
@@ -300,16 +316,17 @@ def articles():
 @app.route("/places/<string:placeType>")
 def findPlace(placeType):
     places = place.Place.getPlacesByType(placeType)
-    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts,placeType=placeType,distance=0)
+    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts, placeType=placeType, distance=0)
 
 
-@app.route("/serachAround/<string:placeType>",methods=['POST','GET'])
+@app.route("/serachAround/<string:placeType>", methods=['POST', 'GET'])
 def serachAround(placeType):
-    if request.method=='POST':
+    if request.method == 'POST':
         distance = request.form.get('distance')
-        
-    places = place.Place.getPlacesByDistance(distance,placeType,currentLocation())
-    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts,placeType=placeType,distance=int(distance))
+
+    places = place.Place.getPlacesByDistance(
+        distance, placeType, currentLocation())
+    return render_template("place.html", places=places, events=events, localGuide=localGuide, oneArticles=oneArticles, allOffersAdverts=allOffersAdverts, placeType=placeType, distance=int(distance))
 
 
 @app.route('/feedback', methods=['POST', 'GET'])
@@ -362,9 +379,8 @@ def updateGuide():
         photo = f.filename
         f.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                             app.config['GUIDE_UPLOAD_FOLDER'], f.filename))
-        guide.Guide.updateGuide(email, gpassword, gmobile,gname, photo)
+        guide.Guide.updateGuide(email, gpassword, gmobile, gname, photo)
         return redirect('/guide/dashboard')
-
 
 
 @app.route('/guide/dashboard', methods=['POST', 'GET'])
@@ -547,11 +563,13 @@ def deleteArticle(ano):
         article.Article.deleteArticle(ano)
     return redirect('/admin/articles')
 
+
 @app.route('/guide/delete/article/<string:ano>', methods=['GET'])
 def deleteArticleGuide(ano):
     if 'guideusername' in session:
         article.Article.deleteArticle(ano)
     return redirect('/guide/articles')
+
 
 @app.route('/resident/delete/article/<string:ano>', methods=['GET'])
 def deleteArticleResident(ano):
@@ -566,11 +584,13 @@ def deleteEvent(eno):
         event.Event.deleteEvent(eno)
     return redirect('/admin/events')
 
+
 @app.route('/guide/delete/event/<string:eno>', methods=['GET'])
 def deleteEventGuide(eno):
     if 'guideusername' in session:
         event.Event.deleteEvent(eno)
     return redirect('/guide/events')
+
 
 @app.route('/resident/delete/event/<string:eno>', methods=['GET'])
 def deleteEventResident(eno):
@@ -585,11 +605,13 @@ def deletePlace(pno):
         place.Place.deletePlace(pno)
     return redirect('/admin/places')
 
+
 @app.route('/guide/delete/place/<string:pno>', methods=['GET'])
 def deletePlaceGuide(pno):
     if 'guideusername' in session:
         place.Place.deletePlace(pno)
     return redirect('/guide/places')
+
 
 @app.route('/resident/delete/place/<string:pno>', methods=['GET'])
 def deletePlaceResident(pno):
@@ -604,11 +626,13 @@ def deleteOffers(oano):
         advert_offers.OfferAdvert.deleteAdvtOffer(oano)
     return redirect('/admin/advtOffer')
 
+
 @app.route('/guide/delete/advtoffer/<string:oano>', methods=['GET'])
 def deleteOffersGuide(oano):
     if 'guideusername' in session:
         advert_offers.OfferAdvert.deleteAdvtOffer(oano)
     return redirect('/guide/advtOffer')
+
 
 @app.route('/resident/delete/advtoffer/<string:oano>', methods=['GET'])
 def deleteOffersResident(oano):

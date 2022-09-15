@@ -1,11 +1,11 @@
-from modulesPackage.connection import mydb, myCursor
+from modulesPackage.connection import mydb,myCursor
 from math import ceil
 import geopy.distance
 
 
 class Article:
     def __init__(self, username, wname, title, article_content, photo, pdate, alocation):
-        query = "insert into article(username,wname,title,article_content,photo,pdate,alocation) values(?,?,?,?,?,?,?)"
+        query = "insert into article(username,wname,title,article_content,photo,pdate,alocation) values(%s,%s,%s,%s,%s,%s,%s)"
         val = (username, wname, title, article_content, photo, pdate, alocation)
         myCursor.execute(query, val)
         mydb.commit()

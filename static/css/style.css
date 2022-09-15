@@ -1487,7 +1487,7 @@ body {
   border-radius: 10px;
   margin-inline: 20px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  text-shadow: 0 5px 20px rgba(14, 15, 18);
+  text-shadow: 0 0 5px rgba(14, 15, 18);
   color: black;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -1851,7 +1851,8 @@ body {
   display: none;
   justify-content: center;
   background-color: rgba(12, 11, 11, 0.8);
-  margin-block: 10px;
+  margin-bottom: 30px;
+  height: 100%;
 }
 
 
@@ -2218,3 +2219,25 @@ label {
 .admin-details .col-sm-5 h2 {
   color: rgb(16, 16, 55);
 }
+
+@media only screen and (max-width: 600px) {
+  table {
+    display: block;
+    width: 80%;
+    overflow-x: scroll;
+    font-size: small;
+  }
+  .dashboard nav {
+    background: linear-gradient(
+      30deg,
+      rgb(201, 207, 238),
+      rgb(181, 205, 230),
+      rgb(222, 203, 174)
+    );
+    box-shadow: 0 0 20px rgba(6, 5, 5, 0.2);
+    margin-inline: auto;
+    padding:0px;
+    width: 100%;
+  }
+}
+

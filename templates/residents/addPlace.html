@@ -19,8 +19,9 @@
                     required />
             </div>
             <div>
-                <select class="form-control text-capitalize" name="ptype" id="PlacesTypes" required>
-                    <option selected disabled>Select type of place</option>
+                <label for="">Select Place Type</label><br>
+                <select class="form-control text-capitalize" name="ptype[]" id="PlacesTypes" multiple
+                    multiselect-search="true" required>
                     {% for types in placeTypes%}
                     <option value="{{types}}">{{types}}</option>
                     {% endfor %}
@@ -50,8 +51,9 @@
                     <label style="float: left;">Select place location : </label>
                 </strong>
                 <br>
+                <br>
                 <small class="text-warning" style="float: left;">
-                    Warning: Please make sure you are at the exact location.
+                    Warning: Drag pointer to your location.
                 </small>
                 <br>
                 <input type="hidden" id="lat" name="latitude" />

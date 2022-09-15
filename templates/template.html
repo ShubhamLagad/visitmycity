@@ -90,9 +90,10 @@
                                 {% set latlog = off_res[5].split(',') %}
                                 <div class="about-btn">
                                     <button class="about-view user-articles-btn">
-                                        <a href="http://maps.google.de/maps?q=loc:{{latlog[0]}},{{latlog[1]}}" target="_blank"> Get Direction &nbsp;<i class="fa fa-location-arrow" ></i></a>
+                                        <a href="http://maps.google.de/maps?q=loc:{{latlog[0]}},{{latlog[1]}}" target="_blank" style="font-weight: 700;color:#fff;"> Get Direction &nbsp;<i class="fa fa-location-arrow" ></i></a>
                                     </button>
                                 </div>
+                                <hr>
                             </div>
                             <div class="col-md-7">
                                 <h3>
@@ -399,6 +400,7 @@
     <script src="{{url_for('static',filename='js/imagesloaded.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/nivo-lightbox.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/core.js')}}"></script>
+    <script src="{{url_for('static',filename='js/multiselect.js')}}"></script>
 
     {% block additionalScript %}
     {% endblock %}

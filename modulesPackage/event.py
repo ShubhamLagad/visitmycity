@@ -1,4 +1,4 @@
-from modulesPackage.connection import mydb, myCursor
+from modulesPackage.connection import mydb,myCursor
 import datetime
 import calendar
 from math import ceil
@@ -8,7 +8,7 @@ import geopy.distance
 class Event:
 
     def __init__(self, username, ename, venue, edate, etime, poster, organizer, location):
-        query = "insert into event (username,ename,venue,edate,etime,poster,organizer,elocation) values(?,?,?,?,?,?,?,?)"
+        query = "insert into event (username,ename,venue,edate,etime,poster,organizer,elocation) values(%s,%s,%s,%s,%s,%s,%s,%s)"
         mdate = Event.formatDate(edate)
         val = (username, ename, venue, mdate,
                etime, poster, organizer, location)

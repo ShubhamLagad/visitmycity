@@ -110,7 +110,7 @@ $(document).ready(function () {
 
         loop: true,
         autoplay: true,
-        smartSpeed: 1000,
+        smartSpeed: 700,
 
         dots: true,
         autoplayHoverPause: true,
@@ -160,7 +160,6 @@ $(document).ready(function () {
 function togglePage() {
     var page1 = document.getElementById('firstpage')
     var page2 = document.getElementById('secondpage')
-
     let temp = page1.style.display;
     page1.style.display = page2.style.display;
     page2.style.display = temp;
@@ -189,6 +188,17 @@ $('.register-close').click(function () {
     var reg_modal = document.getElementById("register-modal");
     reg_modal.style.display = "none";
 })
+function password_Modal(){
+    var password_Modal = document.getElementById("password-modal");
+        password_Modal.style.display = "flex";
+        var login_modal = document.getElementById("login-modal");
+    login_modal.style.display = "none";
+}
+$('.password-close').click(function () {
+    var password_modal = document.getElementById("password-modal");
+    password_modal.style.display = "none";
+})
+
 
 
 // ------------Login login_modal-----------

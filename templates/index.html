@@ -29,6 +29,19 @@
 </script>
 {% endif %}
 
+{% if passwordResetSuccess %}
+<script>
+	alert("Password reset successfull!")
+	window.location.href = "/";
+</script>
+{% endif %}
+{% if passwordResetFailed %}
+<script>
+	alert("Password reset failed!\n Please enter correct email?")
+	window.location.href = "/";
+</script>
+{% endif %}
+
 {% if accountExistsStatus %}
 <script>
 	alert("Account already exists!")
@@ -49,6 +62,7 @@
 	window.location.href = "/";
 </script>
 {% endif %}
+
 
 
 <!--about-us start -->
@@ -126,8 +140,9 @@
 								<option value="learning_and_education">
 							</datalist>
 						</div>
-						<div class="places-content">
-							<div class="row iso-box-wrapper" id="nearbycontent">
+						<div class="places-content text-center">
+							<div class="row iso-box-wrapper text-center" id="nearbycontent"
+								style="margin-inline: auto;">
 								<div class="iso-box sports col-md-4 col-sm-6">
 									<div class="single-package-item">
 										<img src="{{url_for('static',filename='images/categories/sports.jpg')}}"
@@ -294,36 +309,30 @@
 	<div class="modal-content">
 		<span id="login-close" class="close login-close">&times;</span>
 		<div class="text-center">
-			<h4 >Welcome back!</h4>
+			<h4>Welcome back!</h4>
 			<small>Login to continue....</small>
 		</div>
-		<script>
-			function togglePage() {
-				var page1 = document.getElementById('firstpage')
-				var page2 = document.getElementById('secondpage')
-				var page2 = document.getElementById('toggleBtn')
-			
-				let temp = page1.style.display;
-				page1.style.display = page2.style.display;
-				page2.style.display = temp;
-			}
-		</script>
 		<div class="row">
 			<div class="col-sm-6" style="margin-block: 10px;">
-			  <button style="width: 100%;font-weight:600;" id="toggleBtn" onclick="togglePage()" class="btn"> Resident <i class="fa fa-sign-in"></i> </button>
+				<button style="width: 100%;font-weight:600;" id="toggleBtn" onclick="togglePage()" class="btn">Resident
+					<i class="fa fa-sign-in"></i> </button>
 			</div>
 			<div class="col-sm-6" style="margin-block: 10px;">
-			  <button style="width: 100%;font-weight:600;" onclick="togglePage()" class="btn">Guide <i class="fa fa-sign-in"></i> </button>
+				<button style="width: 100%;font-weight:600;" onclick="togglePage()" class="btn">Guide <i
+						class="fa fa-sign-in"></i> </button>
 			</div>
-		  </div>
+		</div>
 
-		<div id="firstpage" style="border: 1px solid #000;border-radius:5px;padding:10px;box-shadow:0 0 1px #000;margin-top:20px;">
+		<div id="firstpage"
+			style="border: 1px solid #000;border-radius:5px;padding:10px;box-shadow:0 0 1px #000;margin-top:20px;">
 			<div class="text-center">
 				<strong>Resident Login</strong>
 			</div>
+			<hr>
 			<form action="/residents/dashboard" method="post">
 				<input type="email" class="form-control" placeholder="Username/email" name="username">
 				<input type="password" class="form-control" placeholder="Password" name="loginpassword">
+				<small style="float:right;"><a style="cursor:pointer ;" onclick="password_Modal()">forget password?</a></small>
 				<div class="about-btn">
 					<button type="submit" class="about-view user-articles-btn">
 						Login
@@ -335,10 +344,12 @@
 				</div>
 			</form>
 		</div>
-		<div id="secondpage" style="display: none;border: 1px solid #000;border-radius:5px;padding:10px;box-shadow:0 0 1px #000;margin-top:20px;">
+		<div id="secondpage"
+			style="display: none;border: 1px solid #000;border-radius:5px;padding:10px;box-shadow:0 0 1px #000;margin-top:20px;">
 			<div class="text-center">
 				<strong>Guide Login</strong>
 			</div>
+			<hr>
 			<form action="/guide/dashboard" method="post">
 				<input type="email" class="form-control" placeholder="Username/email" name="guideUsername">
 				<input type="password" class="form-control" placeholder="Password" name="guidePassword">
@@ -355,7 +366,7 @@
 
 <!----==============Register Modal start------------------->
 <div id="register-modal" class="modal">
-	<div class="modal-content">
+	<div class="modal-content" style="height:fit-content;">
 		<span id="register-close" class="close register-close">&times;</span>
 		<h3>Create an Account?</h3>
 		<hr>
@@ -378,7 +389,7 @@
 				<br>
 				<br>
 				<small class="text-warning" style="float: left;">
-					Warning: Please make sure you are at the exact location.
+					Warning: Drag pointer to your location.
 				</small>
 				<br>
 				<input type="hidden" id="lat" name="latitude" />
@@ -397,6 +408,26 @@
 	</div>
 </div>
 <!-----------------register Modal end===================---->
+
+<!----==============Forget password Modal start------------------->
+<div id="password-modal" class="modal">
+	<div class="modal-content" style="height:fit-content;">
+		<span id="password-close" class="close password-close">&times;</span>
+		<h3>Forget your password</h3>
+		<hr>
+		<form action="/residents/resetPassword" method="post">
+			<input type="email" class="form-control" placeholder="Enter email" name="useremail">
+			<input type="password" class="form-control" placeholder="New Password" name="loginpassword">
+			<input type="password" class="form-control" placeholder="Confirm password" name="cforgetpassword">
+			<div class="about-btn">
+				<button type="submit" class="about-view user-articles-btn">
+					Reset Password
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-----------------Email Modal end===================---->
 
 <!----==============Guide Register Modal start------------------->
 <div id="guide-register-modal" class="modal">
@@ -425,7 +456,7 @@
 					</strong>
 					<br>
 					<small class="text-warning" style="float: left;">
-						Warning: Please make sure you are at the exact location.
+						Warning: Drag pointer to your location.
 					</small>
 					<input type="hidden" id="lat2" name="glatitude" />
 					<input type="hidden" id="lng2" name="glongitude" />
@@ -446,7 +477,7 @@
 
 <!----==============Guide Login Modal start===================--->
 <div id="guide-login-modal" class="modal">
-	<div class="modal-content">
+	<div class="modal-content" style="height:fit-content;">
 		<span id="guide-login-close" class="close login-close">&times;</span>
 		<h2>Login</h2>
 		<hr>
@@ -465,8 +496,8 @@
 
 
 <!----==============Admin Login Modal end===================---->
-<div id="admin-login-modal" class="modal" style="display: none;">
-	<div class="modal-content">
+<div id="admin-login-modal" class="modal" style="display: none; ">
+	<div class="modal-content" style="height:fit-content;">
 		<span id="admin-login-close" onclick="admin_login_close()" class="close login-close">&times;</span>
 		<h2>Login</h2>
 		<hr>
@@ -497,5 +528,6 @@
 	login_modal.style.display = "flex";
 </script>
 {% endif %}
+
 
 {% endblock %}

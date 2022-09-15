@@ -1,13 +1,13 @@
 from math import ceil
 from flask import session
 import geopy.distance
-from modulesPackage.connection import mydb, myCursor
+from modulesPackage.connection import mydb,myCursor
 
 
 class Resident:
 
     def __init__(self, name, email, mobile, password, rlocation):
-        query = "insert into resident(name,email,mobile,password,rlocation)values(?,?,?,?,?)"
+        query = "insert into resident(name,email,mobile,password,rlocation)values(%s,%s,%s,%s,%s)"
         val = (name, email, mobile, password, rlocation)
         myCursor.execute(query, val)
         mydb.commit()
@@ -109,10 +109,20 @@ class Resident:
             if Resident.getDistanceOfLocation(guideLocation, res[5])<3:
                 residents.append(res)
         return residents
+    
+    def resetPassword(email,password):
+        query = f"update resident set password='{password}' where email='{email}'"
+        myCursor.execute(query)
+        mydb.commit()
+        if myCursor.rowcount:
+            return True
+        else:
+            return False
+         
 
 class Feedback:
     def __init__(self, username, email, comment):
-        query = "insert into feedback(username,email,comment) values(?,?,?)"
+        query = "insert into feedback(username,email,comment) values(%s,%s,%s)"
         val = (username, email, comment)
         myCursor.execute(query, val)
         mydb.commit()

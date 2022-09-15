@@ -1,11 +1,11 @@
-from modulesPackage.connection import mydb, myCursor
+from modulesPackage.connection import myCursor,mydb
 from math import ceil
 import geopy.distance
 
 
 class OfferAdvert:
     def __init__(self, username, title, content, image, olocation):
-        query = "insert into advert_offer(username,title,content,image,olocation)values(?,?,?,?,?)"
+        query = "insert into advert_offer(username,title,content,image,olocation)values(%s,%s,%s,%s,%s)"
         val = (username, title, content, image, olocation)
         myCursor.execute(query, val)
         mydb.commit()

@@ -7,7 +7,7 @@ from math import ceil
 class Guide:
 
     def __init__(self, email, password, gmobile, gname, glocation, photo):
-        query = 'insert into guide(email,password,mobile,gname,glocation,photo) values(?,?,?,?,?,?)'
+        query = 'insert into guide(email,password,mobile,gname,glocation,photo) values(%s,%s,%s,%s,%s,%s)'
         val = (email, password, gmobile, gname, glocation, photo)
         myCursor.execute(query, val)
         mydb.commit()
@@ -15,7 +15,6 @@ class Guide:
     def updateGuide(email, password, mobile, gname, photo):
         query = f"update guide set email='{email}',password='{password}',mobile='{mobile}',gname='{gname}',photo='{photo}'"
         session['guideusername'] = email
-        myCursor = mydb.cursor()
         myCursor.execute(query)
         mydb.commit()
 

@@ -1,5 +1,4 @@
-from sqlite3 import Cursor
-from modulesPackage.connection import myCursor
+from modulesPackage.connection import myCursor,mydb
 
 
 class Admin:
@@ -11,7 +10,6 @@ class Admin:
 
     def getAllEvents():
         query = "select * from event"
-        myCursor.execute(query)
         myCursor.execute(query)
         result = myCursor.fetchall()
         return result

@@ -14,6 +14,7 @@
             <th>name</th>
             <th>email</th>
             <th>mobile</th>
+            <th>location</th>
             <th>action</th>
         </tr>
     </thead>
@@ -24,6 +25,13 @@
             <td>{{res[1]}}</td>
             <td class="text-lowercase">{{res[2]}}</td>
             <td>{{res[3]}}</td>
+            <td>
+                {% set LatLon =res[5].split(',') %}
+                <iframe
+                    src="https://maps.google.com/maps?q={{LatLon[0]}},{{LatLon[1]}}&hl=es;z=12&amp&output=embed"
+                    width="300px" height="200px" style="border-radius:5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </td>
             <td>
                 <a href="/guide/delete/resident/{{res[2]}}" onclick="return confirm('Are you sure you want to delete?');"><i
                         class="fa fa-trash fa-2x text-danger"></i></a>
